@@ -14,11 +14,10 @@
 # macOS Files
 *.DS_Store
 
-# Package Files #
+# Package Files
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
 *.war
-*.nar
 *.ear
 *.zip
 *.tar.gz
@@ -46,6 +45,7 @@ target/
 generated/
 .ballerina
 **/Config.toml
+examples/**/Dependencies.toml
 
 # Ignore Gradle project-specific cache directory
 .gradle
