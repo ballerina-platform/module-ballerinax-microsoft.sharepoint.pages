@@ -38,7 +38,7 @@ public function main() returns error? {
 
     io:println("=== Step 1: Auditing Web Parts in Vertical Section ===");
 
-    pages:WebPartCollectionResponse webPartsResult = check sharepointClient->pagesAsSitePageCanvasLayoutVerticalSectionListWebparts(siteId, pageId);
+    pages:WebPartCollectionResponse webPartsResult = check sharepointClient->listVSectionWebparts(siteId, pageId);
     io:println("Successfully retrieved web parts in vertical section:");
     io:println(webPartsResult);
 
@@ -48,7 +48,7 @@ public function main() returns error? {
         id: "new-announcement-webpart"
     };
 
-    pages:WebPart postResult = check sharepointClient->pagesAsSitePageCanvasLayoutVerticalSectionCreateWebparts(siteId, pageId, newWebPart);
+    pages:WebPart postResult = check sharepointClient->createVSectionWebpart(siteId, pageId, newWebPart);
     io:println("Successfully added new announcement web part:");
     io:println(postResult);
 
@@ -58,6 +58,6 @@ public function main() returns error? {
         id: existingWebPartId
     };
 
-    check sharepointClient->pagesAsSitePageCanvasLayoutVerticalSectionUpdateWebparts(siteId, pageId, existingWebPartId, updatedWebPart);
+    check sharepointClient->updateVSectionWebpart(siteId, pageId, existingWebPartId, updatedWebPart);
     io:println("Successfully updated existing web part with new navigation links.");
 }

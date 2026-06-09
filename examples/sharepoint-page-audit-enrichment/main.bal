@@ -50,7 +50,7 @@ public function main() returns error? {
     // Step 2: Retrieve full SitePage details including canvas layout
     io:println("Step 2: Retrieving full SitePage details with canvas layout...");
 
-    pages:SitePage getPageResult = check sharepointClient->getPagesAsSitePage(siteId, pageId);
+    pages:SitePage getPageResult = check sharepointClient->getSitePage(siteId, pageId);
 
     io:println("Successfully retrieved SitePage details.");
     io:println("Page Details (including canvas layout):");
@@ -81,7 +81,7 @@ public function main() returns error? {
         horizontalSections: [reviewSection]
     };
 
-    check sharepointClient->pagesAsSitePageUpdateCanvasLayout(siteId, pageId, canvasLayoutPayload);
+    check sharepointClient->updateSitePageCanvasLayout(siteId, pageId, canvasLayoutPayload);
 
     io:println("Successfully added 'Last Reviewed' banner section to the page canvas layout.");
 }

@@ -27,16 +27,6 @@ public type Entity record {
     string id?;
 };
 
-# Represents the Queries record for the operation: pagesLastModifiedByUserGetMailboxSettings
-public type PagesLastModifiedByUserGetMailboxSettingsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("archiveFolder"|"automaticRepliesSetting"|"dateFormat"|"delegateMeetingMessageDeliveryOptions"|"language"|"timeFormat"|"timeZone"|"userPurpose"|"workingHours")[] dollarSelect?;
-};
-
 # Contains archival status details for a SharePoint site collection.
 public type SiteArchivalDetails record {
     # Represents the current archive status of the site collection. Requires $select to retrieve. The possible values are: recentlyArchived, fullyArchived, reactivating, unknownFutureValue
@@ -187,34 +177,6 @@ public type TimeClockSettings record {
     GeoCoordinates|record {} approvedLocation?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsListColumns
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsListColumnsQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("id"|"id desc"|"width"|"width desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"webparts")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"width"|"webparts")[] dollarSelect?;
-};
-
 # The reason for which a user has been flagged
 public type ManagedAppFlaggedReason "none"|"rootedDevice";
 
@@ -234,11 +196,49 @@ public type ExternalAudienceScope "none"|"contactsOnly"|"all";
 # Enum indicating the likelihood of an item being selected; either 'notSpecified' or 'high'.
 public type SelectionLikelihoodInfo "notSpecified"|"high";
 
+# Represents the Queries record for the operation: getHSectionsCount
+public type GetHSectionsCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+};
+
 # A chat message directed to a specific recipient identity, extending the base chat message.
 public type TargetedChatMessage record {
     *ChatMessage;
     # The identity of the specific recipient targeted by this chat message.
     Identity|record {} recipient?;
+};
+
+# Represents the Queries record for the operation: listPageCreatorServiceErrors
+public type ListPageCreatorServiceErrorsQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("createdDateTime"|"createdDateTime desc"|"isResolved"|"isResolved desc"|"serviceInstance"|"serviceInstance desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("createdDateTime"|"isResolved"|"serviceInstance")[] dollarSelect?;
 };
 
 # Exchange settings entity containing the user's primary mailbox identifier.
@@ -274,11 +274,59 @@ public type DeviceEnrollmentType "unknown"|"userEnrollment"|"deviceEnrollmentMan
 # Enumeration specifying paper feed orientation for a printer: long edge first or short edge first.
 public type PrinterFeedOrientation "longEdgeFirst"|"shortEdgeFirst"|"unknownFutureValue";
 
+# Represents the Queries record for the operation: getVSectionWebpartsCount
+public type GetVSectionWebpartsCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+};
+
 # Represents a user's Microsoft To Do instance, containing their task lists.
 public type Todo record {
     *Entity;
     # The task lists in the users mailbox
     TodoTaskList[] lists?;
+};
+
+# Represents the Queries record for the operation: getHSectionColumn
+public type GetHSectionColumnQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"webparts")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"width"|"webparts")[] dollarSelect?;
+};
+
+# Represents the Queries record for the operation: listSitePageWebParts
+public type ListSitePageWebPartsQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("id"|"id desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id")[] dollarSelect?;
 };
 
 # Represents Planner resources accessible to a user, including assigned tasks and shared plans.
@@ -413,13 +461,6 @@ public type MeetingChatMode "enabled"|"disabled"|"limited"|"unknownFutureValue";
 # Enum specifying the page ordering and direction for multi-page print layouts.
 public type PrintMultipageLayout "clockwiseFromTopLeft"|"counterclockwiseFromTopLeft"|"counterclockwiseFromTopRight"|"clockwiseFromTopRight"|"counterclockwiseFromBottomLeft"|"clockwiseFromBottomLeft"|"counterclockwiseFromBottomRight"|"clockwiseFromBottomRight"|"unknownFutureValue";
 
-# Represents the Headers record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsColumnsDeleteWebparts
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsColumnsDeleteWebpartsHeaders record {
-    # ETag
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
 # Provides deep links to open a OneNote notebook in the native client or on the web.
 public type NotebookLinks record {
     # Opens the notebook in the OneNote native client if it's installed
@@ -436,6 +477,13 @@ public type ChatMessagePolicyViolationDlpActionTypes "none"|"notifySender"|"bloc
 
 # Enum representing the lifecycle status of a long-running operation.
 public type OperationStatus "NotStarted"|"Running"|"Completed"|"Failed";
+
+# Represents the Headers record for the operation: deleteHSectionColumn
+public type DeleteHSectionColumnHeaders record {
+    # ETag
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
 
 # Defines a SharePoint column for selecting people or groups.
 public type PersonOrGroupColumn record {
@@ -530,8 +578,8 @@ public type Workbook record {
     WorkbookFunctions|record {} functions?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCreatedByUserListServiceProvisioningErrors
-public type PagesAsSitePageCreatedByUserListServiceProvisioningErrorsQueries record {
+# Represents the Queries record for the operation: listSitePageCreatorServiceErrors
+public type ListSitePageCreatorServiceErrorsQueries record {
     # Skip the first n items
     @http:Query {name: "$skip"}
     int dollarSkip?;
@@ -601,8 +649,8 @@ public type SettingSourceType "deviceConfiguration"|"deviceIntent";
 # Enum indicating the archive status of a SharePoint site: recentlyArchived, fullyArchived, reactivating, or unknown.
 public type SiteArchiveStatus "recentlyArchived"|"fullyArchived"|"reactivating"|"unknownFutureValue";
 
-# Represents the Headers record for the operation: pagesAsSitePageCanvasLayoutVerticalSectionDeleteWebparts
-public type PagesAsSitePageCanvasLayoutVerticalSectionDeleteWebpartsHeaders record {
+# Represents the Headers record for the operation: deleteVSectionWebpart
+public type DeleteVSectionWebpartHeaders record {
     # ETag
     @http:Header {name: "If-Match"}
     string ifMatch?;
@@ -762,6 +810,16 @@ public type TeamworkUserIdentity record {
     *Identity;
     # Type of user. The possible values are: aadUser, onPremiseAadUser, anonymousGuest, federatedUser, personalMicrosoftAccountUser, skypeUser, phoneUser, unknownFutureValue and emailUser
     TeamworkUserIdentityType|record {} userIdentityType?;
+};
+
+# Represents the Queries record for the operation: getPagesCount
+public type GetPagesCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
 };
 
 # Represents a member assigned to a teamwork tag in Microsoft Teams.
@@ -1030,6 +1088,16 @@ public type PasswordAuthenticationMethod record {
     string? password?;
 };
 
+# Represents the Queries record for the operation: getSitePageModifier
+public type GetSitePageModifierQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"deletedDateTime"|"aboutMe"|"accountEnabled"|"ageGroup"|"assignedLicenses"|"assignedPlans"|"authorizationInfo"|"birthday"|"businessPhones"|"city"|"companyName"|"consentProvidedForMinor"|"country"|"createdDateTime"|"creationType"|"customSecurityAttributes"|"department"|"deviceEnrollmentLimit"|"displayName"|"employeeHireDate"|"employeeId"|"employeeLeaveDateTime"|"employeeOrgData"|"employeeType"|"externalUserState"|"externalUserStateChangeDateTime"|"faxNumber"|"givenName"|"hireDate"|"identities"|"identityParentId"|"imAddresses"|"interests"|"isManagementRestricted"|"isResourceAccount"|"jobTitle"|"lastPasswordChangeDateTime"|"legalAgeGroupClassification"|"licenseAssignmentStates"|"mail"|"mailboxSettings"|"mailNickname"|"mobilePhone"|"mySite"|"officeLocation"|"onPremisesDistinguishedName"|"onPremisesDomainName"|"onPremisesExtensionAttributes"|"onPremisesImmutableId"|"onPremisesLastSyncDateTime"|"onPremisesProvisioningErrors"|"onPremisesSamAccountName"|"onPremisesSecurityIdentifier"|"onPremisesSyncEnabled"|"onPremisesUserPrincipalName"|"otherMails"|"passwordPolicies"|"passwordProfile"|"pastProjects"|"postalCode"|"preferredDataLocation"|"preferredLanguage"|"preferredName"|"print"|"provisionedPlans"|"proxyAddresses"|"responsibilities"|"schools"|"securityIdentifier"|"serviceProvisioningErrors"|"showInAddressList"|"signInActivity"|"signInSessionsValidFromDateTime"|"skills"|"state"|"streetAddress"|"surname"|"usageLocation"|"userPrincipalName"|"userType"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarSelect?;
+};
+
 # Represents a message in a Microsoft Teams chat or channel, including content, metadata, mentions, attachments, and reactions.
 public type ChatMessage record {
     *Entity;
@@ -1231,34 +1299,6 @@ public type ResponseType "none"|"organizer"|"tentativelyAccepted"|"accepted"|"de
 # Enum defining the scope of a term group: global, system, siteCollection, or unknownFutureValue.
 public type TermStoreTermGroupScope "global"|"system"|"siteCollection"|"unknownFutureValue";
 
-# Represents the Queries record for the operation: pagesAsSitePageListWebParts
-public type PagesAsSitePageListWebPartsQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("id"|"id desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id")[] dollarSelect?;
-};
-
 # Enum defining the intended audience scope for a broadcast meeting.
 public type BroadcastMeetingAudience "roleIsAttendee"|"organization"|"everyone"|"unknownFutureValue";
 
@@ -1453,21 +1493,59 @@ public type TermStoreRelation record {
     TermStoreRelationType|record {} relationship?;
 };
 
+# Represents the Queries record for the operation: getPageModifier
+public type GetPageModifierQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"deletedDateTime"|"aboutMe"|"accountEnabled"|"ageGroup"|"assignedLicenses"|"assignedPlans"|"authorizationInfo"|"birthday"|"businessPhones"|"city"|"companyName"|"consentProvidedForMinor"|"country"|"createdDateTime"|"creationType"|"customSecurityAttributes"|"department"|"deviceEnrollmentLimit"|"displayName"|"employeeHireDate"|"employeeId"|"employeeLeaveDateTime"|"employeeOrgData"|"employeeType"|"externalUserState"|"externalUserStateChangeDateTime"|"faxNumber"|"givenName"|"hireDate"|"identities"|"identityParentId"|"imAddresses"|"interests"|"isManagementRestricted"|"isResourceAccount"|"jobTitle"|"lastPasswordChangeDateTime"|"legalAgeGroupClassification"|"licenseAssignmentStates"|"mail"|"mailboxSettings"|"mailNickname"|"mobilePhone"|"mySite"|"officeLocation"|"onPremisesDistinguishedName"|"onPremisesDomainName"|"onPremisesExtensionAttributes"|"onPremisesImmutableId"|"onPremisesLastSyncDateTime"|"onPremisesProvisioningErrors"|"onPremisesSamAccountName"|"onPremisesSecurityIdentifier"|"onPremisesSyncEnabled"|"onPremisesUserPrincipalName"|"otherMails"|"passwordPolicies"|"passwordProfile"|"pastProjects"|"postalCode"|"preferredDataLocation"|"preferredLanguage"|"preferredName"|"print"|"provisionedPlans"|"proxyAddresses"|"responsibilities"|"schools"|"securityIdentifier"|"serviceProvisioningErrors"|"showInAddressList"|"signInActivity"|"signInSessionsValidFromDateTime"|"skills"|"state"|"streetAddress"|"surname"|"usageLocation"|"userPrincipalName"|"userType"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarSelect?;
+};
+
 # Enum indicating the status of automatic replies: disabled, always enabled, or scheduled.
 public type AutomaticRepliesStatus "disabled"|"alwaysEnabled"|"scheduled";
 
-# Represents the Queries record for the operation: pagesAsSitePageGetWebParts
-public type PagesAsSitePageGetWebPartsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id")[] dollarSelect?;
-};
-
 # Represents a geolocation column type configuration for a SharePoint list.
 public type GeolocationColumn record {
+};
+
+# Represents the Queries record for the operation: getSitePageCanvasLayout
+public type GetSitePageCanvasLayoutQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"horizontalSections"|"verticalSection")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"horizontalSections"|"verticalSection")[] dollarSelect?;
+};
+
+# Represents the Queries record for the operation: listSitePages
+public type ListSitePagesQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("id"|"id desc"|"createdBy"|"createdBy desc"|"createdDateTime"|"createdDateTime desc"|"description"|"description desc"|"eTag"|"eTag desc"|"lastModifiedBy"|"lastModifiedBy desc"|"lastModifiedDateTime"|"lastModifiedDateTime desc"|"name"|"name desc"|"parentReference"|"parentReference desc"|"webUrl"|"webUrl desc"|"pageLayout"|"pageLayout desc"|"publishingState"|"publishingState desc"|"title"|"title desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"createdByUser"|"lastModifiedByUser")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"createdBy"|"createdDateTime"|"description"|"eTag"|"lastModifiedBy"|"lastModifiedDateTime"|"name"|"parentReference"|"webUrl"|"pageLayout"|"publishingState"|"title"|"createdByUser"|"lastModifiedByUser")[] dollarSelect?;
 };
 
 # Represents a delegated permission grant authorizing a client app to access an API on behalf of a user.
@@ -1485,6 +1563,16 @@ public type OAuth2PermissionGrant record {
     string? principalId?;
 };
 
+# Represents the Queries record for the operation: getHorizontalSection
+public type GetHorizontalSectionQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"columns")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"emphasis"|"layout"|"columns")[] dollarSelect?;
+};
+
 # Enumeration of permission levels for calendar sharing, from no access to full delegate access
 public type CalendarRoleType "none"|"freeBusyRead"|"limitedRead"|"read"|"write"|"delegateWithoutPrivateEventAccess"|"delegateWithPrivateEventAccess"|"custom";
 
@@ -1497,6 +1585,34 @@ public type TeamworkConversationIdentity record {
 
 # Enumeration indicating the precision level of a work location: none, approximate, or specific.
 public type MaxWorkLocationDetails "unknown"|"none"|"approximate"|"specific"|"unknownFutureValue";
+
+# Represents the Queries record for the operation: listHSectionColumns
+public type ListHSectionColumnsQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("id"|"id desc"|"width"|"width desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"webparts")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"width"|"webparts")[] dollarSelect?;
+};
 
 # Enumeration indicating whether a message is classified as focused or other.
 public type InferenceClassificationType "focused"|"other";
@@ -1689,34 +1805,6 @@ public type MeetingParticipants record {
     MeetingParticipantInfo|record {} organizer?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutListHorizontalSections
-public type PagesAsSitePageCanvasLayoutListHorizontalSectionsQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("id"|"id desc"|"emphasis"|"emphasis desc"|"layout"|"layout desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"columns")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"emphasis"|"layout"|"columns")[] dollarSelect?;
-};
-
 # Enumeration of Live Share options for a meeting: enabled, disabled, or unknownFutureValue.
 public type MeetingLiveShareOptions "enabled"|"disabled"|"unknownFutureValue";
 
@@ -1755,6 +1843,16 @@ public type Post record {
 public type PlannerOrderHintsByAssignee record {
 };
 
+# Represents the Queries record for the operation: getSitePage
+public type GetSitePageQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"createdByUser"|"lastModifiedByUser")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"createdBy"|"createdDateTime"|"description"|"eTag"|"lastModifiedBy"|"lastModifiedDateTime"|"name"|"parentReference"|"webUrl"|"pageLayout"|"publishingState"|"title"|"createdByUser"|"lastModifiedByUser")[] dollarSelect?;
+};
+
 # Defines the recurrence pattern for a recurring event, including frequency, interval, and day constraints.
 public type RecurrencePattern record {
     # The month in which the event occurs.  This is a number from 1 to 12
@@ -1778,16 +1876,6 @@ public type RecurrencePattern record {
 
 # Special floating-point numeric reference values: negative infinity, infinity, or not-a-number.
 public type ReferenceNumeric "-INF"|"INF"|"NaN"?;
-
-# Represents the Queries record for the operation: pagesAsSitePageLastModifiedByUserGetMailboxSettings
-public type PagesAsSitePageLastModifiedByUserGetMailboxSettingsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("archiveFolder"|"automaticRepliesSetting"|"dateFormat"|"delegateMeetingMessageDeliveryOptions"|"language"|"timeFormat"|"timeZone"|"userPurpose"|"workingHours")[] dollarSelect?;
-};
 
 # Represents the status and metadata of a long-running asynchronous operation
 public type LongRunningOperation record {
@@ -2046,6 +2134,16 @@ public type EngagementRoleMember record {
     User|record {} user?;
 };
 
+# Represents the Queries record for the operation: getSitePageWebPartsCount
+public type GetSitePageWebPartsCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+};
+
 # Metadata object describing a user activity, including its associated activity type.
 public type ActivityMetadata record {
     # Indicates the type of user activity: text/file upload or download, or unknown future value.
@@ -2054,16 +2152,6 @@ public type ActivityMetadata record {
 
 # Represents a printer's supported scaling options, as either a PrintScaling value or extension type.
 public type MicrosoftgraphprinterCapabilitiesScalings PrintScaling|ScalingsAnyOf2?;
-
-# Represents the Queries record for the operation: pagesGetLastModifiedByUser
-public type PagesGetLastModifiedByUserQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"deletedDateTime"|"aboutMe"|"accountEnabled"|"ageGroup"|"assignedLicenses"|"assignedPlans"|"authorizationInfo"|"birthday"|"businessPhones"|"city"|"companyName"|"consentProvidedForMinor"|"country"|"createdDateTime"|"creationType"|"customSecurityAttributes"|"department"|"deviceEnrollmentLimit"|"displayName"|"employeeHireDate"|"employeeId"|"employeeLeaveDateTime"|"employeeOrgData"|"employeeType"|"externalUserState"|"externalUserStateChangeDateTime"|"faxNumber"|"givenName"|"hireDate"|"identities"|"identityParentId"|"imAddresses"|"interests"|"isManagementRestricted"|"isResourceAccount"|"jobTitle"|"lastPasswordChangeDateTime"|"legalAgeGroupClassification"|"licenseAssignmentStates"|"mail"|"mailboxSettings"|"mailNickname"|"mobilePhone"|"mySite"|"officeLocation"|"onPremisesDistinguishedName"|"onPremisesDomainName"|"onPremisesExtensionAttributes"|"onPremisesImmutableId"|"onPremisesLastSyncDateTime"|"onPremisesProvisioningErrors"|"onPremisesSamAccountName"|"onPremisesSecurityIdentifier"|"onPremisesSyncEnabled"|"onPremisesUserPrincipalName"|"otherMails"|"passwordPolicies"|"passwordProfile"|"pastProjects"|"postalCode"|"preferredDataLocation"|"preferredLanguage"|"preferredName"|"print"|"provisionedPlans"|"proxyAddresses"|"responsibilities"|"schools"|"securityIdentifier"|"serviceProvisioningErrors"|"showInAddressList"|"signInActivity"|"signInSessionsValidFromDateTime"|"skills"|"state"|"streetAddress"|"surname"|"usageLocation"|"userPrincipalName"|"userType"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarSelect?;
-};
 
 # Represents a user's storage resource, including associated storage quota information.
 public type UserStorage record {
@@ -2106,16 +2194,6 @@ public type SharepointIds record {
     string? siteId?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCreatedByUserServiceProvisioningErrorsGetCount
-public type PagesAsSitePageCreatedByUserServiceProvisioningErrorsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-};
-
 # Represents a shared printer, including access controls, associated printer, and creation metadata.
 public type PrinterShare record {
     *PrinterBase;
@@ -2131,13 +2209,6 @@ public type PrinterShare record {
     User[] allowedUsers?;
     # The groups whose users have access to print using the printer
     Group[] allowedGroups?;
-};
-
-# Represents the Headers record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsDeleteColumns
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsDeleteColumnsHeaders record {
-    # ETag
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
 };
 
 # Represents a user in the employee experience context, including Viva Engage roles and learning activities.
@@ -2318,36 +2389,18 @@ public type MeetingParticipantInfo record {
 # Malware severity
 public type WindowsMalwareSeverity "unknown"|"low"|"moderate"|"high"|"severe";
 
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsColumnsListWebparts
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsColumnsListWebpartsQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
+# Optional nullable object representing an alternate print quality specification.
+public type QualitiesAnyOf2 record {
+};
+
+# Represents the Queries record for the operation: getPageModifierServiceErrorsCount
+public type GetPageModifierServiceErrorsCountQueries record {
     # Filter items by property values
     @http:Query {name: "$filter"}
     string dollarFilter?;
     # Search items by search phrases
     @http:Query {name: "$search"}
     string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("id"|"id desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id")[] dollarSelect?;
-};
-
-# Optional nullable object representing an alternate print quality specification.
-public type QualitiesAnyOf2 record {
 };
 
 # Represents an installed Teams app instance, including the app, its version definition, and consented permissions.
@@ -2359,26 +2412,6 @@ public type TeamsAppInstallation record {
     TeamsAppPermissionSet|record {} consentedPermissionSet?;
     # The details of this version of the app
     TeamsAppDefinition|record {} teamsAppDefinition?;
-};
-
-# Represents the Queries record for the operation: pagesAsSitePageGetLastModifiedByUser
-public type PagesAsSitePageGetLastModifiedByUserQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"deletedDateTime"|"aboutMe"|"accountEnabled"|"ageGroup"|"assignedLicenses"|"assignedPlans"|"authorizationInfo"|"birthday"|"businessPhones"|"city"|"companyName"|"consentProvidedForMinor"|"country"|"createdDateTime"|"creationType"|"customSecurityAttributes"|"department"|"deviceEnrollmentLimit"|"displayName"|"employeeHireDate"|"employeeId"|"employeeLeaveDateTime"|"employeeOrgData"|"employeeType"|"externalUserState"|"externalUserStateChangeDateTime"|"faxNumber"|"givenName"|"hireDate"|"identities"|"identityParentId"|"imAddresses"|"interests"|"isManagementRestricted"|"isResourceAccount"|"jobTitle"|"lastPasswordChangeDateTime"|"legalAgeGroupClassification"|"licenseAssignmentStates"|"mail"|"mailboxSettings"|"mailNickname"|"mobilePhone"|"mySite"|"officeLocation"|"onPremisesDistinguishedName"|"onPremisesDomainName"|"onPremisesExtensionAttributes"|"onPremisesImmutableId"|"onPremisesLastSyncDateTime"|"onPremisesProvisioningErrors"|"onPremisesSamAccountName"|"onPremisesSecurityIdentifier"|"onPremisesSyncEnabled"|"onPremisesUserPrincipalName"|"otherMails"|"passwordPolicies"|"passwordProfile"|"pastProjects"|"postalCode"|"preferredDataLocation"|"preferredLanguage"|"preferredName"|"print"|"provisionedPlans"|"proxyAddresses"|"responsibilities"|"schools"|"securityIdentifier"|"serviceProvisioningErrors"|"showInAddressList"|"signInActivity"|"signInSessionsValidFromDateTime"|"skills"|"state"|"streetAddress"|"surname"|"usageLocation"|"userPrincipalName"|"userType"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarSelect?;
-};
-
-# Represents the Queries record for the operation: pagesAsSitePageWebPartsGetCount
-public type PagesAsSitePageWebPartsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
 };
 
 # Base type representing a platform-specific managed application protection policy in Intune.
@@ -2465,6 +2498,23 @@ public type OfficeGraphInsights record {
     SharedInsight[] shared?;
     # Calculated relationship that identifies the latest documents viewed or modified by a user, including OneDrive for work or school and SharePoint documents, ranked by recency of use
     UsedInsight[] used?;
+};
+
+# Represents the Queries record for the operation: getSitePageCreatorMailbox
+public type GetSitePageCreatorMailboxQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("archiveFolder"|"automaticRepliesSetting"|"dateFormat"|"delegateMeetingMessageDeliveryOptions"|"language"|"timeFormat"|"timeZone"|"userPurpose"|"workingHours")[] dollarSelect?;
+};
+
+# Represents the Headers record for the operation: deleteSitePageWebPart
+public type DeleteSitePageWebPartHeaders record {
+    # ETag
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
 };
 
 # Represents the formatting properties for chart gridlines, including line style settings.
@@ -2625,13 +2675,6 @@ public type WorkingTimeSchedule record {
     *Entity;
 };
 
-# Represents the Headers record for the operation: pagesAsSitePageDeleteCanvasLayout
-public type PagesAsSitePageDeleteCanvasLayoutHeaders record {
-    # ETag
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
 # Represents a general device management failure event with timestamp and correlation ID.
 public type DeviceManagementTroubleshootingEvent record {
     *Entity;
@@ -2657,13 +2700,6 @@ public type OutlookUser record {
     *Entity;
     # A list of categories defined for the user
     OutlookCategory[] masterCategories?;
-};
-
-# Represents the Headers record for the operation: pagesAsSitePageDeleteWebParts
-public type PagesAsSitePageDeleteWebPartsHeaders record {
-    # ETag
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
 };
 
 # Represents detailed information for a Planner task, including description, checklist, and references.
@@ -2945,16 +2981,6 @@ public type WindowsSettingInstance record {
     string createdDateTime?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutGetHorizontalSections
-public type PagesAsSitePageCanvasLayoutGetHorizontalSectionsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"columns")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"emphasis"|"layout"|"columns")[] dollarSelect?;
-};
-
 # Enumeration of Teams app resource-specific permission types: delegated, application, or unknown.
 public type TeamsAppResourceSpecificPermissionType "delegated"|"application"|"unknownFutureValue";
 
@@ -3020,16 +3046,6 @@ public type TimeOffItem record {
 
 # Enumeration indicating the current migration state: in progress, completed, or unknown.
 public type MigrationMode "inProgress"|"completed"|"unknownFutureValue";
-
-# Represents the Queries record for the operation: pagesGetCount
-public type PagesGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-};
 
 # Represents the Queries record for the operation: listPages
 public type ListPagesQueries record {
@@ -3314,26 +3330,6 @@ public type CallRecording record {
 # Enumeration of color theme options available for calendar display customization.
 public type CalendarColor "auto"|"lightBlue"|"lightGreen"|"lightOrange"|"lightGray"|"lightYellow"|"lightTeal"|"lightPink"|"lightBrown"|"lightRed"|"maxColor";
 
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsColumnsGetWebparts
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsColumnsGetWebpartsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id")[] dollarSelect?;
-};
-
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsGetCount
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-};
-
 # Represents a license assigned to a user, including the SKU identifier and disabled service plans.
 public type AssignedLicense record {
     # A collection of the unique identifiers for plans that have been disabled. IDs are available in servicePlans > servicePlanId in the tenant's subscribedSkus or serviceStatus > servicePlanId in the tenant's companySubscription
@@ -3410,6 +3406,16 @@ public type File record {
 # Enumeration of print task processing states: pending, processing, completed, aborted, or unknownFutureValue.
 public type PrintTaskProcessingState "pending"|"processing"|"completed"|"aborted"|"unknownFutureValue";
 
+# Represents the Queries record for the operation: getSitePageCreatorServiceErrorsCount
+public type GetSitePageCreatorServiceErrorsCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+};
+
 # Represents a Windows Hello for Business authentication method registered to a user.
 public type WindowsHelloForBusinessAuthenticationMethod record {
     *AuthenticationMethod;
@@ -3485,16 +3491,6 @@ public type MeetingAttendanceReport record {
     decimal? totalParticipantCount?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutVerticalSectionWebpartsGetCount
-public type PagesAsSitePageCanvasLayoutVerticalSectionWebpartsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-};
-
 # Represents a phone number entry including its number, type, language, and region.
 public type Phone record {
     # The phone number
@@ -3516,16 +3512,6 @@ public type WorkbookChartGridlines record {
     WorkbookChartGridlinesFormat|record {} format?;
 };
 
-# Represents the Queries record for the operation: pagesGetCreatedByUser
-public type PagesGetCreatedByUserQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"deletedDateTime"|"aboutMe"|"accountEnabled"|"ageGroup"|"assignedLicenses"|"assignedPlans"|"authorizationInfo"|"birthday"|"businessPhones"|"city"|"companyName"|"consentProvidedForMinor"|"country"|"createdDateTime"|"creationType"|"customSecurityAttributes"|"department"|"deviceEnrollmentLimit"|"displayName"|"employeeHireDate"|"employeeId"|"employeeLeaveDateTime"|"employeeOrgData"|"employeeType"|"externalUserState"|"externalUserStateChangeDateTime"|"faxNumber"|"givenName"|"hireDate"|"identities"|"identityParentId"|"imAddresses"|"interests"|"isManagementRestricted"|"isResourceAccount"|"jobTitle"|"lastPasswordChangeDateTime"|"legalAgeGroupClassification"|"licenseAssignmentStates"|"mail"|"mailboxSettings"|"mailNickname"|"mobilePhone"|"mySite"|"officeLocation"|"onPremisesDistinguishedName"|"onPremisesDomainName"|"onPremisesExtensionAttributes"|"onPremisesImmutableId"|"onPremisesLastSyncDateTime"|"onPremisesProvisioningErrors"|"onPremisesSamAccountName"|"onPremisesSecurityIdentifier"|"onPremisesSyncEnabled"|"onPremisesUserPrincipalName"|"otherMails"|"passwordPolicies"|"passwordProfile"|"pastProjects"|"postalCode"|"preferredDataLocation"|"preferredLanguage"|"preferredName"|"print"|"provisionedPlans"|"proxyAddresses"|"responsibilities"|"schools"|"securityIdentifier"|"serviceProvisioningErrors"|"showInAddressList"|"signInActivity"|"signInSessionsValidFromDateTime"|"skills"|"state"|"streetAddress"|"surname"|"usageLocation"|"userPrincipalName"|"userType"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarSelect?;
-};
-
 # The identifier for a mobile app
 public type MobileAppIdentifier record {
 };
@@ -3538,16 +3524,6 @@ public type HorizontalSectionCollectionResponse record {
     *BaseCollectionPaginationCountResponse;
     # Array of horizontal section objects returned in the paginated collection.
     HorizontalSection[] value?;
-};
-
-# Represents the Queries record for the operation: pagesAsSitePageLastModifiedByUserServiceProvisioningErrorsGetCount
-public type PagesAsSitePageLastModifiedByUserServiceProvisioningErrorsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
 };
 
 # Contains client output extensions returned during a WebAuthn authentication ceremony.
@@ -3569,6 +3545,34 @@ public type ColumnLink record {
 public type PolicyLocation record {
     # The actual value representing the location. Location value is specific for concretetype of the  policyLocation - policyLocationDomain, policyLocationUrl, or policyLocationApplication (for example, 'contoso.com', 'https://partner.contoso.com/upload', '83ef198a-0396-4893-9d4f-d36efbffcaaa')
     string value?;
+};
+
+# Represents the Queries record for the operation: listSitePageModifierServiceErrors
+public type ListSitePageModifierServiceErrorsQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("createdDateTime"|"createdDateTime desc"|"isResolved"|"isResolved desc"|"serviceInstance"|"serviceInstance desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("createdDateTime"|"isResolved"|"serviceInstance")[] dollarSelect?;
 };
 
 # Represents a Microsoft Teams team template used as a blueprint for creating teams.
@@ -3603,6 +3607,34 @@ public type EmployeeOrgData record {
     string? division?;
     # The cost center associated with the user. Requires $select to retrieve. Supports $filter
     string? costCenter?;
+};
+
+# Represents the Queries record for the operation: listHSectionColumnWebparts
+public type ListHSectionColumnWebpartsQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("id"|"id desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id")[] dollarSelect?;
 };
 
 # Represents the display format for a task on the Planner progress-view task board, including ordering.
@@ -3681,6 +3713,13 @@ public type ContentTypeOrder record {
     decimal? position?;
 };
 
+# Represents the Headers record for the operation: deleteHorizontalSection
+public type DeleteHorizontalSectionHeaders record {
+    # ETag
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+
 # Specifies how meeting messages are delivered to delegates and principals.
 public type DelegateMeetingMessageDeliveryOptions "sendToDelegateAndInformationToPrincipal"|"sendToDelegateAndPrincipal"|"sendToDelegateOnly";
 
@@ -3724,34 +3763,6 @@ public type GroupLifecyclePolicy record {
     decimal? groupLifetimeInDays?;
     # The group type for which the expiration policy applies. Possible values are All, Selected or None
     string? managedGroupTypes?;
-};
-
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutVerticalSectionListWebparts
-public type PagesAsSitePageCanvasLayoutVerticalSectionListWebpartsQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("id"|"id desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id")[] dollarSelect?;
 };
 
 # Identifies the container resource (e.g., group or roster) that owns a Planner plan.
@@ -3843,16 +3854,6 @@ public type SharingInvitation record {
     string? redeemedBy?;
     # The email address provided for the recipient of the sharing invitation. Read-only
     string? email?;
-};
-
-# Represents the Queries record for the operation: pagesCreatedByUserServiceProvisioningErrorsGetCount
-public type PagesCreatedByUserServiceProvisioningErrorsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
 };
 
 # Represents a legacy extended property storing a single string value on a resource.
@@ -3955,11 +3956,14 @@ public type OnenoteEntitySchemaObjectModel record {
     string? createdDateTime?;
 };
 
-# Represents the Headers record for the operation: pagesAsSitePageCanvasLayoutDeleteHorizontalSections
-public type PagesAsSitePageCanvasLayoutDeleteHorizontalSectionsHeaders record {
-    # ETag
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
+# Represents the Queries record for the operation: getPageCreatorServiceErrorsCount
+public type GetPageCreatorServiceErrorsCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
 };
 
 # Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
@@ -4005,6 +4009,13 @@ public type ConnectionConfig record {|
     # and absent fields are handled as `nilable` types. Enabled by default.
     boolean laxDataBinding = true;
 |};
+
+# Represents the Headers record for the operation: deleteVerticalSection
+public type DeleteVerticalSectionHeaders record {
+    # ETag
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
 
 # Represents a user identity with extended attributes including IP address and UPN.
 public type UserIdentity record {
@@ -4079,34 +4090,6 @@ public type LookupColumn record {
     string? columnName?;
 };
 
-# Represents the Queries record for the operation: pagesLastModifiedByUserListServiceProvisioningErrors
-public type PagesLastModifiedByUserListServiceProvisioningErrorsQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("createdDateTime"|"createdDateTime desc"|"isResolved"|"isResolved desc"|"serviceInstance"|"serviceInstance desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("createdDateTime"|"isResolved"|"serviceInstance")[] dollarSelect?;
-};
-
 # File integrity hash values, including SHA1, SHA256, CRC32, and QuickXorHash representations.
 public type Hashes record {
     # This property isn't supported. Don't use
@@ -4158,6 +4141,13 @@ public type AppIdentity record {
     string? servicePrincipalId?;
 };
 
+# Represents the Headers record for the operation: deleteHSectionColumnWebpart
+public type DeleteHSectionColumnWebpartHeaders record {
+    # ETag
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+
 # Extends IdentitySet to represent an identity mentioned in a chat message, including conversation context.
 public type ChatMessageMentionedIdentitySet record {
     *IdentitySet;
@@ -4167,34 +4157,6 @@ public type ChatMessageMentionedIdentitySet record {
 
 # Enumeration of well-known list identifiers, including default, flagged emails, and unknown future values.
 public type WellknownListName "none"|"defaultList"|"flaggedEmails"|"unknownFutureValue";
-
-# Represents the Queries record for the operation: listPagesAsSitePage
-public type ListPagesAsSitePageQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("id"|"id desc"|"createdBy"|"createdBy desc"|"createdDateTime"|"createdDateTime desc"|"description"|"description desc"|"eTag"|"eTag desc"|"lastModifiedBy"|"lastModifiedBy desc"|"lastModifiedDateTime"|"lastModifiedDateTime desc"|"name"|"name desc"|"parentReference"|"parentReference desc"|"webUrl"|"webUrl desc"|"pageLayout"|"pageLayout desc"|"publishingState"|"publishingState desc"|"title"|"title desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"createdByUser"|"lastModifiedByUser")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"createdBy"|"createdDateTime"|"description"|"eTag"|"lastModifiedBy"|"lastModifiedDateTime"|"name"|"parentReference"|"webUrl"|"pageLayout"|"publishingState"|"title"|"createdByUser"|"lastModifiedByUser")[] dollarSelect?;
-};
 
 # Represents the sensitivity label assigned to a Teams online meeting.
 public type OnlineMeetingSensitivityLabelAssignment record {
@@ -4838,6 +4800,34 @@ public type TeamsTab record {
 # Enum indicating the type of a Teams tag: standard or unknownFutureValue.
 public type TeamworkTagType "standard"|"unknownFutureValue";
 
+# Represents the Queries record for the operation: listHorizontalSections
+public type ListHorizontalSectionsQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("id"|"id desc"|"emphasis"|"emphasis desc"|"layout"|"layout desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"columns")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"emphasis"|"layout"|"columns")[] dollarSelect?;
+};
+
 # Defines a user's working schedule including days, start/end times, and time zone.
 public type WorkingHours record {
     # The time zone to which the working hours apply
@@ -4946,16 +4936,6 @@ public type HorizontalSectionColumnCollectionResponse record {
     *BaseCollectionPaginationCountResponse;
     # Array of horizontalSectionColumn items returned in the collection response.
     HorizontalSectionColumn[] value?;
-};
-
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsColumnsGetCount
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsColumnsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
 };
 
 # Analytics data for a SharePoint item, including activity stats across time ranges.
@@ -5198,6 +5178,16 @@ public type SitePage record {
     TitleArea|record {} titleArea?;
 };
 
+# Represents the Queries record for the operation: getSitePageModifierMailbox
+public type GetSitePageModifierMailboxQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("archiveFolder"|"automaticRepliesSetting"|"dateFormat"|"delegateMeetingMessageDeliveryOptions"|"language"|"timeFormat"|"timeZone"|"userPurpose"|"workingHours")[] dollarSelect?;
+};
+
 # Metadata describing a SharePoint list, including its template type, visibility, and content type settings.
 public type ListInfo record {
     # An enumerated value that represents the base list template used in creating the list. Possible values include documentLibrary, genericList, task, survey, announcements, contacts, and more
@@ -5341,16 +5331,6 @@ public type FollowupFlag record {
     DateTimeTimeZone|record {} completedDateTime?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsGetColumns
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsGetColumnsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"webparts")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"width"|"webparts")[] dollarSelect?;
-};
-
 # Represents a time window defined by a start and end date-time with time zone.
 public type TimeSlot record {
     # Represents a date and time value paired with a specific time zone identifier.
@@ -5370,6 +5350,16 @@ public type CalendarGroup record {
     Calendar[] calendars?;
     # The group name
     string? name?;
+};
+
+# Represents the Queries record for the operation: getVerticalSection
+public type GetVerticalSectionQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"webparts")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"emphasis"|"webparts")[] dollarSelect?;
 };
 
 # Represents the title of a workbook chart, including its text, visibility, overlay, and formatting.
@@ -5458,6 +5448,16 @@ public type ScoredEmailAddress record {
     decimal|string|ReferenceNumeric? relevanceScore?;
     # Indicates the likelihood that this email address will be selected by the user.
     SelectionLikelihoodInfo|record {} selectionLikelihood?;
+};
+
+# Represents the Queries record for the operation: getHSectionColumnWebpartsCount
+public type GetHSectionColumnWebpartsCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
 };
 
 # Defines configuration for a text column in a SharePoint list, including length and multi-line options.
@@ -5605,16 +5605,6 @@ public type TimeRange record {
     string? endTime?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutHorizontalSectionsColumnsWebpartsGetCount
-public type PagesAsSitePageCanvasLayoutHorizontalSectionsColumnsWebpartsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-};
-
 # Represents a row in a workbook table, including its zero-based index and raw cell values.
 public type WorkbookTableRow record {
     *Entity;
@@ -5730,32 +5720,34 @@ public type AccessAction record {
 # Enumeration describing the detailed processing state of a print job in its lifecycle.
 public type PrintJobStateDetail "uploadPending"|"transforming"|"completedSuccessfully"|"completedWithWarnings"|"completedWithErrors"|"releaseWait"|"interpreting"|"unknownFutureValue";
 
-# Represents the Queries record for the operation: pagesAsSitePageLastModifiedByUserListServiceProvisioningErrors
-public type PagesAsSitePageLastModifiedByUserListServiceProvisioningErrorsQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
+# Represents the Queries record for the operation: getHSectionColumnWebpart
+public type GetHSectionColumnWebpartQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id")[] dollarSelect?;
+};
+
+# Represents the Queries record for the operation: getPageModifierMailbox
+public type GetPageModifierMailboxQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("archiveFolder"|"automaticRepliesSetting"|"dateFormat"|"delegateMeetingMessageDeliveryOptions"|"language"|"timeFormat"|"timeZone"|"userPurpose"|"workingHours")[] dollarSelect?;
+};
+
+# Represents the Queries record for the operation: getHSectionColumnsCount
+public type GetHSectionColumnsCountQueries record {
     # Filter items by property values
     @http:Query {name: "$filter"}
     string dollarFilter?;
     # Search items by search phrases
     @http:Query {name: "$search"}
     string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("createdDateTime"|"createdDateTime desc"|"isResolved"|"isResolved desc"|"serviceInstance"|"serviceInstance desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("createdDateTime"|"isResolved"|"serviceInstance")[] dollarSelect?;
 };
 
 # Flags enum specifying override options available to the user for a policy violation verdict.
@@ -5770,16 +5762,6 @@ public type AdhocCall record {
     CallTranscript[] transcripts?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageGetCanvasLayout
-public type PagesAsSitePageGetCanvasLayoutQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"horizontalSections"|"verticalSection")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"horizontalSections"|"verticalSection")[] dollarSelect?;
-};
-
 # Indicates the type of user activity: text/file upload or download, or unknown future value.
 public type UserActivityType "uploadText"|"uploadFile"|"downloadText"|"downloadFile"|"unknownFutureValue";
 
@@ -5791,6 +5773,16 @@ public type PasswordProfile record {
     boolean? forceChangePasswordNextSignIn?;
     # If true, at next sign-in, the user must perform a multifactor authentication (MFA) before being forced to change their password. The behavior is identical to forceChangePasswordNextSignIn except that the user is required to first perform a multifactor authentication before password change. After a password change, this property will be automatically reset to false. If not set, default is false
     boolean? forceChangePasswordNextSignInWithMfa?;
+};
+
+# Represents the Queries record for the operation: getPageCreatorMailbox
+public type GetPageCreatorMailboxQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("archiveFolder"|"automaticRepliesSetting"|"dateFormat"|"delegateMeetingMessageDeliveryOptions"|"language"|"timeFormat"|"timeZone"|"userPurpose"|"workingHours")[] dollarSelect?;
 };
 
 # Represents information about a pinned chat message, including a reference to the message details.
@@ -5964,6 +5956,16 @@ public type MessageRulePredicates record {
     Recipient[] sentToAddresses?;
 };
 
+# Represents the Queries record for the operation: getSitePageModifierServiceErrorsCount
+public type GetSitePageModifierServiceErrorsCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+};
+
 # Enumeration of days of the week: sunday through saturday.
 public type DayOfWeek "sunday"|"monday"|"tuesday"|"wednesday"|"thursday"|"friday"|"saturday";
 
@@ -6109,16 +6111,6 @@ public type Quota record {
     StoragePlanInformation|record {} storagePlanInformation?;
     # Total space remaining before reaching the capacity limit, in bytes. Read-only
     decimal? remaining?;
-};
-
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutVerticalSectionGetWebparts
-public type PagesAsSitePageCanvasLayoutVerticalSectionGetWebpartsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id")[] dollarSelect?;
 };
 
 # Supported duplex printing modes for the printer; accepts a PrintDuplexMode value or extended type.
@@ -6436,6 +6428,16 @@ public type ChatMessageHostedContent record {
     *TeamworkHostedContent;
 };
 
+# Represents the Queries record for the operation: getSitePagesCount
+public type GetSitePagesCountQueries record {
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+};
+
 # Represents a Planner bucket that organizes tasks within a plan.
 public type PlannerBucket record {
     *Entity;
@@ -6507,6 +6509,34 @@ public type PrinterCapabilities record {
     string[] mediaSizes?;
 };
 
+# Represents the Queries record for the operation: listVSectionWebparts
+public type ListVSectionWebpartsQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("id"|"id desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id")[] dollarSelect?;
+};
+
 # Represents a service plan provisioned for a user or organization, including status and capability
 public type ProvisionedPlan record {
     # The possible values are:Success - Service is fully provisioned.Disabled - Service is disabled.Error - The service plan isn't provisioned and is in an error state.PendingInput - The service isn't provisioned and is awaiting service confirmation.PendingActivation - The service is provisioned but requires explicit activation by an administrator (for example, Intune_O365 service plan)PendingProvisioning - Microsoft has added a new service to the product SKU and it isn't activated in the tenant
@@ -6570,34 +6600,6 @@ public type WorkbookChartAxis record {
     Json|record {} minorUnit?;
     # Represents the interval between two major tick marks. Can be set to a numeric value or an empty string.  The returned value is always a number
     Json|record {} majorUnit?;
-};
-
-# Represents the Queries record for the operation: pagesCreatedByUserListServiceProvisioningErrors
-public type PagesCreatedByUserListServiceProvisioningErrorsQueries record {
-    # Skip the first n items
-    @http:Query {name: "$skip"}
-    int dollarSkip?;
-    # Show only the first n items
-    @http:Query {name: "$top"}
-    int dollarTop?;
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-    # Order items by property values
-    @http:Query {name: "$orderby"}
-    ("createdDateTime"|"createdDateTime desc"|"isResolved"|"isResolved desc"|"serviceInstance"|"serviceInstance desc")[] dollarOrderby?;
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Include count of items
-    @http:Query {name: "$count"}
-    boolean dollarCount?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("createdDateTime"|"isResolved"|"serviceInstance")[] dollarSelect?;
 };
 
 # Represents a chart legend, including its visibility, position, overlay behavior, and formatting.
@@ -6686,16 +6688,6 @@ public type MicrosoftgraphrecurrencePatternDaysOfWeek DayOfWeek|DaysOfWeekAnyOf2
 public type Package record {
     # A string indicating the type of package. While oneNote is the only currently defined value, you should expect other package types to be returned and handle them accordingly
     string? 'type?;
-};
-
-# Represents the Queries record for the operation: pagesLastModifiedByUserServiceProvisioningErrorsGetCount
-public type PagesLastModifiedByUserServiceProvisioningErrorsGetCountQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
 };
 
 # Enum representing the execution status of a workbook operation.
@@ -7103,16 +7095,6 @@ public type PrintDocument record {
     string? contentType?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageCreatedByUserGetMailboxSettings
-public type PagesAsSitePageCreatedByUserGetMailboxSettingsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("archiveFolder"|"automaticRepliesSetting"|"dateFormat"|"delegateMeetingMessageDeliveryOptions"|"language"|"timeFormat"|"timeZone"|"userPurpose"|"workingHours")[] dollarSelect?;
-};
-
 # Computer endpoint protection state
 public type WindowsDeviceHealthState "clean"|"fullScanPending"|"rebootPending"|"manualStepsPending"|"offlineScanPending"|"critical";
 
@@ -7265,6 +7247,16 @@ public type DeviceConfigurationSettingState record {
     string? settingName?;
 };
 
+# Represents the Queries record for the operation: getSitePageCreator
+public type GetSitePageCreatorQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"deletedDateTime"|"aboutMe"|"accountEnabled"|"ageGroup"|"assignedLicenses"|"assignedPlans"|"authorizationInfo"|"birthday"|"businessPhones"|"city"|"companyName"|"consentProvidedForMinor"|"country"|"createdDateTime"|"creationType"|"customSecurityAttributes"|"department"|"deviceEnrollmentLimit"|"displayName"|"employeeHireDate"|"employeeId"|"employeeLeaveDateTime"|"employeeOrgData"|"employeeType"|"externalUserState"|"externalUserStateChangeDateTime"|"faxNumber"|"givenName"|"hireDate"|"identities"|"identityParentId"|"imAddresses"|"interests"|"isManagementRestricted"|"isResourceAccount"|"jobTitle"|"lastPasswordChangeDateTime"|"legalAgeGroupClassification"|"licenseAssignmentStates"|"mail"|"mailboxSettings"|"mailNickname"|"mobilePhone"|"mySite"|"officeLocation"|"onPremisesDistinguishedName"|"onPremisesDomainName"|"onPremisesExtensionAttributes"|"onPremisesImmutableId"|"onPremisesLastSyncDateTime"|"onPremisesProvisioningErrors"|"onPremisesSamAccountName"|"onPremisesSecurityIdentifier"|"onPremisesSyncEnabled"|"onPremisesUserPrincipalName"|"otherMails"|"passwordPolicies"|"passwordProfile"|"pastProjects"|"postalCode"|"preferredDataLocation"|"preferredLanguage"|"preferredName"|"print"|"provisionedPlans"|"proxyAddresses"|"responsibilities"|"schools"|"securityIdentifier"|"serviceProvisioningErrors"|"showInAddressList"|"signInActivity"|"signInSessionsValidFromDateTime"|"skills"|"state"|"streetAddress"|"surname"|"usageLocation"|"userPrincipalName"|"userType"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarSelect?;
+};
+
 # Enumeration indicating the sensitivity level of an item: normal, personal, private, or confidential.
 public type Sensitivity "normal"|"personal"|"private"|"confidential";
 
@@ -7310,16 +7302,6 @@ public type Authentication record {
 public type PendingOperations record {
     # A property that indicates that an operation that might update the binary content of a file is pending completion
     PendingContentUpdate|record {} pendingContentUpdate?;
-};
-
-# Represents the Queries record for the operation: pagesAsSitePageCanvasLayoutGetVerticalSection
-public type PagesAsSitePageCanvasLayoutGetVerticalSectionQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"webparts")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"emphasis"|"webparts")[] dollarSelect?;
 };
 
 # Represents a specific versioned item captured within a document set version snapshot.
@@ -7450,6 +7432,26 @@ public type ItemInsights record {
     *OfficeGraphInsights;
 };
 
+# Represents the Queries record for the operation: getPageCreator
+public type GetPageCreatorQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id"|"deletedDateTime"|"aboutMe"|"accountEnabled"|"ageGroup"|"assignedLicenses"|"assignedPlans"|"authorizationInfo"|"birthday"|"businessPhones"|"city"|"companyName"|"consentProvidedForMinor"|"country"|"createdDateTime"|"creationType"|"customSecurityAttributes"|"department"|"deviceEnrollmentLimit"|"displayName"|"employeeHireDate"|"employeeId"|"employeeLeaveDateTime"|"employeeOrgData"|"employeeType"|"externalUserState"|"externalUserStateChangeDateTime"|"faxNumber"|"givenName"|"hireDate"|"identities"|"identityParentId"|"imAddresses"|"interests"|"isManagementRestricted"|"isResourceAccount"|"jobTitle"|"lastPasswordChangeDateTime"|"legalAgeGroupClassification"|"licenseAssignmentStates"|"mail"|"mailboxSettings"|"mailNickname"|"mobilePhone"|"mySite"|"officeLocation"|"onPremisesDistinguishedName"|"onPremisesDomainName"|"onPremisesExtensionAttributes"|"onPremisesImmutableId"|"onPremisesLastSyncDateTime"|"onPremisesProvisioningErrors"|"onPremisesSamAccountName"|"onPremisesSecurityIdentifier"|"onPremisesSyncEnabled"|"onPremisesUserPrincipalName"|"otherMails"|"passwordPolicies"|"passwordProfile"|"pastProjects"|"postalCode"|"preferredDataLocation"|"preferredLanguage"|"preferredName"|"print"|"provisionedPlans"|"proxyAddresses"|"responsibilities"|"schools"|"securityIdentifier"|"serviceProvisioningErrors"|"showInAddressList"|"signInActivity"|"signInSessionsValidFromDateTime"|"skills"|"state"|"streetAddress"|"surname"|"usageLocation"|"userPrincipalName"|"userType"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarSelect?;
+};
+
+# Represents the Queries record for the operation: getSitePageWebPart
+public type GetSitePageWebPartQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id")[] dollarSelect?;
+};
+
 # Represents the title of a workbook chart axis, including text, visibility, and formatting.
 public type WorkbookChartAxisTitle record {
     *Entity;
@@ -7531,6 +7533,16 @@ public type PrintFinishing "none"|"staple"|"punch"|"cover"|"bind"|"saddleStitch"
 
 # Represents the collection of assignments for a Planner task, keyed by user ID.
 public type PlannerAssignments record {
+};
+
+# Represents the Queries record for the operation: getVSectionWebpart
+public type GetVSectionWebpartQueries record {
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("id")[] dollarSelect?;
 };
 
 # Represents a managed app registration, linking a device app instance to Intune app protection policies.
@@ -7739,6 +7751,13 @@ public type Channel record {
     string? email?;
 };
 
+# Represents the Headers record for the operation: deleteSitePageCanvasLayout
+public type DeleteSitePageCanvasLayoutHeaders record {
+    # ETag
+    @http:Header {name: "If-Match"}
+    string ifMatch?;
+};
+
 # Represents configuration settings for a Microsoft Teams tab, including content, website, and remove URLs.
 public type TeamsTabConfiguration record {
     # Url used for rendering tab contents in Teams. Required
@@ -7831,16 +7850,6 @@ public type AppRoleAssignment record {
     string? principalId?;
     # The type of the assigned principal. This can either be User, Group, or ServicePrincipal. Read-only
     string? principalType?;
-};
-
-# Represents the Queries record for the operation: getPagesAsSitePage
-public type GetPagesAsSitePageQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"createdByUser"|"lastModifiedByUser")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"createdBy"|"createdDateTime"|"description"|"eTag"|"lastModifiedBy"|"lastModifiedDateTime"|"name"|"parentReference"|"webUrl"|"pageLayout"|"publishingState"|"title"|"createdByUser"|"lastModifiedByUser")[] dollarSelect?;
 };
 
 # Represents a sign-in identity for a user, including the issuer, sign-in type, and assigned identifier.
@@ -8353,16 +8362,6 @@ public type MicrosoftAuthenticatorAuthenticationMethod record {
     Device|record {} device?;
 };
 
-# Represents the Queries record for the operation: pagesAsSitePageGetCreatedByUser
-public type PagesAsSitePageGetCreatedByUserQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("id"|"deletedDateTime"|"aboutMe"|"accountEnabled"|"ageGroup"|"assignedLicenses"|"assignedPlans"|"authorizationInfo"|"birthday"|"businessPhones"|"city"|"companyName"|"consentProvidedForMinor"|"country"|"createdDateTime"|"creationType"|"customSecurityAttributes"|"department"|"deviceEnrollmentLimit"|"displayName"|"employeeHireDate"|"employeeId"|"employeeLeaveDateTime"|"employeeOrgData"|"employeeType"|"externalUserState"|"externalUserStateChangeDateTime"|"faxNumber"|"givenName"|"hireDate"|"identities"|"identityParentId"|"imAddresses"|"interests"|"isManagementRestricted"|"isResourceAccount"|"jobTitle"|"lastPasswordChangeDateTime"|"legalAgeGroupClassification"|"licenseAssignmentStates"|"mail"|"mailboxSettings"|"mailNickname"|"mobilePhone"|"mySite"|"officeLocation"|"onPremisesDistinguishedName"|"onPremisesDomainName"|"onPremisesExtensionAttributes"|"onPremisesImmutableId"|"onPremisesLastSyncDateTime"|"onPremisesProvisioningErrors"|"onPremisesSamAccountName"|"onPremisesSecurityIdentifier"|"onPremisesSyncEnabled"|"onPremisesUserPrincipalName"|"otherMails"|"passwordPolicies"|"passwordProfile"|"pastProjects"|"postalCode"|"preferredDataLocation"|"preferredLanguage"|"preferredName"|"print"|"provisionedPlans"|"proxyAddresses"|"responsibilities"|"schools"|"securityIdentifier"|"serviceProvisioningErrors"|"showInAddressList"|"signInActivity"|"signInSessionsValidFromDateTime"|"skills"|"state"|"streetAddress"|"surname"|"usageLocation"|"userPrincipalName"|"userType"|"activities"|"adhocCalls"|"agreementAcceptances"|"appRoleAssignments"|"authentication"|"calendar"|"calendarGroups"|"calendars"|"calendarView"|"chats"|"cloudClipboard"|"cloudPCs"|"contactFolders"|"contacts"|"createdObjects"|"dataSecurityAndGovernance"|"deviceManagementTroubleshootingEvents"|"directReports"|"drive"|"drives"|"employeeExperience"|"events"|"extensions"|"followedSites"|"inferenceClassification"|"insights"|"joinedTeams"|"licenseDetails"|"mailFolders"|"managedAppRegistrations"|"managedDevices"|"manager"|"memberOf"|"messages"|"oauth2PermissionGrants"|"onenote"|"onlineMeetings"|"onPremisesSyncBehavior"|"outlook"|"ownedDevices"|"ownedObjects"|"people"|"permissionGrants"|"photo"|"photos"|"planner"|"presence"|"registeredDevices"|"scopedRoleMemberOf"|"settings"|"solutions"|"sponsors"|"teamwork"|"todo"|"transitiveMemberOf")[] dollarSelect?;
-};
-
 # Defines the date range and boundaries over which a recurrence pattern applies.
 public type RecurrenceRange record {
     # The date to stop applying the recurrence pattern. Depending on the recurrence pattern of the event, the last occurrence of the meeting may not be this date. Required if type is endDate
@@ -8418,27 +8417,7 @@ public type ProfilePhoto record {
     decimal? height?;
 };
 
-# Represents the Queries record for the operation: pagesCreatedByUserGetMailboxSettings
-public type PagesCreatedByUserGetMailboxSettingsQueries record {
-    # Expand related entities
-    @http:Query {name: "$expand"}
-    ("*")[] dollarExpand?;
-    # Select properties to be returned
-    @http:Query {name: "$select"}
-    ("archiveFolder"|"automaticRepliesSetting"|"dateFormat"|"delegateMeetingMessageDeliveryOptions"|"language"|"timeFormat"|"timeZone"|"userPurpose"|"workingHours")[] dollarSelect?;
-};
-
 public type PrinterCapabilitiesLeftMarginsItemsNumber decimal?;
-
-# Represents the Queries record for the operation: pagesGetCountAsSitePage
-public type PagesGetCountAsSitePageQueries record {
-    # Filter items by property values
-    @http:Query {name: "$filter"}
-    string dollarFilter?;
-    # Search items by search phrases
-    @http:Query {name: "$search"}
-    string dollarSearch?;
-};
 
 # Represents a content approval status column in a SharePoint list.
 public type ContentApprovalStatusColumn record {
@@ -8474,13 +8453,6 @@ public type ChatMessageReactionIdentitySet record {
     *IdentitySet;
 };
 
-# Represents the Headers record for the operation: pagesAsSitePageCanvasLayoutDeleteVerticalSection
-public type PagesAsSitePageCanvasLayoutDeleteVerticalSectionHeaders record {
-    # ETag
-    @http:Header {name: "If-Match"}
-    string ifMatch?;
-};
-
 # Represents an external resource linked to a task from a third-party application.
 public type LinkedResource record {
     *Entity;
@@ -8507,6 +8479,34 @@ public type ServiceProvisioningErrorCollectionResponse record {
     *BaseCollectionPaginationCountResponse;
     # Array of service provisioning error objects returned in the collection.
     ServiceProvisioningError[] value?;
+};
+
+# Represents the Queries record for the operation: listPageModifierServiceErrors
+public type ListPageModifierServiceErrorsQueries record {
+    # Skip the first n items
+    @http:Query {name: "$skip"}
+    int dollarSkip?;
+    # Show only the first n items
+    @http:Query {name: "$top"}
+    int dollarTop?;
+    # Filter items by property values
+    @http:Query {name: "$filter"}
+    string dollarFilter?;
+    # Search items by search phrases
+    @http:Query {name: "$search"}
+    string dollarSearch?;
+    # Order items by property values
+    @http:Query {name: "$orderby"}
+    ("createdDateTime"|"createdDateTime desc"|"isResolved"|"isResolved desc"|"serviceInstance"|"serviceInstance desc")[] dollarOrderby?;
+    # Expand related entities
+    @http:Query {name: "$expand"}
+    ("*")[] dollarExpand?;
+    # Include count of items
+    @http:Query {name: "$count"}
+    boolean dollarCount?;
+    # Select properties to be returned
+    @http:Query {name: "$select"}
+    ("createdDateTime"|"isResolved"|"serviceInstance")[] dollarSelect?;
 };
 
 # Represents a user's Focused Inbox classification settings, including sender-based overrides.

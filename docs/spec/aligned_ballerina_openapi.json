@@ -464,7 +464,7 @@
                 ],
                 "summary": "Get createdByUser from sites",
                 "description": "Identity of the user who created the item. Read-only.",
-                "operationId": "pages.GetCreatedByUser",
+                "operationId": "GetPageCreator",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -751,7 +751,7 @@
                 ],
                 "summary": "Get mailboxSettings property value",
                 "description": "Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Requires $select to retrieve.",
-                "operationId": "pages.createdByUser.GetMailboxSettings",
+                "operationId": "GetPageCreatorMailbox",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -845,7 +845,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update property mailboxSettings value.",
-                "operationId": "pages.createdByUser.UpdateMailboxSettings",
+                "operationId": "UpdatePageCreatorMailbox",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -901,7 +901,7 @@
                 ],
                 "summary": "Get serviceProvisioningErrors property value",
                 "description": "Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.  Supports $filter (eq, not, for isResolved and serviceInstance).",
-                "operationId": "pages.createdByUser.ListServiceProvisioningErrors",
+                "operationId": "ListPageCreatorServiceErrors",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1028,7 +1028,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.createdByUser.ServiceProvisioningErrors.GetCount",
+                "operationId": "GetPageCreatorServiceErrorsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1080,7 +1080,7 @@
                 ],
                 "summary": "Get lastModifiedByUser from sites",
                 "description": "Identity of the user who last modified the item. Read-only.",
-                "operationId": "pages.GetLastModifiedByUser",
+                "operationId": "GetPageModifier",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1367,7 +1367,7 @@
                 ],
                 "summary": "Get mailboxSettings property value",
                 "description": "Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Requires $select to retrieve.",
-                "operationId": "pages.lastModifiedByUser.GetMailboxSettings",
+                "operationId": "GetPageModifierMailbox",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1461,7 +1461,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update property mailboxSettings value.",
-                "operationId": "pages.lastModifiedByUser.UpdateMailboxSettings",
+                "operationId": "UpdatePageModifierMailbox",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1517,7 +1517,7 @@
                 ],
                 "summary": "Get serviceProvisioningErrors property value",
                 "description": "Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.  Supports $filter (eq, not, for isResolved and serviceInstance).",
-                "operationId": "pages.lastModifiedByUser.ListServiceProvisioningErrors",
+                "operationId": "ListPageModifierServiceErrors",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1644,7 +1644,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.lastModifiedByUser.ServiceProvisioningErrors.GetCount",
+                "operationId": "GetPageModifierServiceErrorsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1700,7 +1700,7 @@
                     "description": "Find more info here",
                     "url": "https://learn.microsoft.com/graph/api/sitepage-get?view=graph-rest-1.0"
                 },
-                "operationId": "GetPages.AsSitePage",
+                "operationId": "GetSitePage",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1806,7 +1806,7 @@
                 ],
                 "summary": "Get canvasLayout from sites",
                 "description": "Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical sections.",
-                "operationId": "pages.AsSitePage.GetCanvasLayout",
+                "operationId": "GetSitePageCanvasLayout",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1897,7 +1897,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Delete navigation property canvasLayout for sites",
-                "operationId": "pages.AsSitePage.DeleteCanvasLayout",
+                "operationId": "DeleteSitePageCanvasLayout",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -1952,7 +1952,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update the navigation property canvasLayout in sites",
-                "operationId": "pages.AsSitePage.UpdateCanvasLayout",
+                "operationId": "UpdateSitePageCanvasLayout",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2010,7 +2010,7 @@
                 ],
                 "summary": "Get horizontalSections from sites",
                 "description": "Collection of horizontal sections on the SharePoint page.",
-                "operationId": "pages.AsSitePage.canvasLayout.ListHorizontalSections",
+                "operationId": "ListHorizontalSections",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2137,7 +2137,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Create new navigation property to horizontalSections for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.CreateHorizontalSections",
+                "operationId": "CreateHorizontalSection",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2202,7 +2202,7 @@
                 ],
                 "summary": "Get horizontalSections from sites",
                 "description": "Collection of horizontal sections on the SharePoint page.",
-                "operationId": "pages.AsSitePage.canvasLayout.GetHorizontalSections",
+                "operationId": "GetHorizontalSection",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2305,7 +2305,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Delete navigation property horizontalSections for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.DeleteHorizontalSections",
+                "operationId": "DeleteHorizontalSection",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2372,7 +2372,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update the navigation property horizontalSections in sites",
-                "operationId": "pages.AsSitePage.canvasLayout.UpdateHorizontalSections",
+                "operationId": "UpdateHorizontalSection",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2442,7 +2442,7 @@
                 ],
                 "summary": "Get columns from sites",
                 "description": "The set of vertical columns in this section.",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.ListColumns",
+                "operationId": "ListHSectionColumns",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2578,7 +2578,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Create new navigation property to columns for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.CreateColumns",
+                "operationId": "CreateHSectionColumn",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2655,7 +2655,7 @@
                 ],
                 "summary": "Get columns from sites",
                 "description": "The set of vertical columns in this section.",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.GetColumns",
+                "operationId": "GetHSectionColumn",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2769,7 +2769,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Delete navigation property columns for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.DeleteColumns",
+                "operationId": "DeleteHSectionColumn",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2848,7 +2848,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update the navigation property columns in sites",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.UpdateColumns",
+                "operationId": "UpdateHSectionColumn",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -2929,7 +2929,7 @@
                 ],
                 "summary": "Get webparts from sites",
                 "description": "The collection of WebParts in this column.",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.columns.ListWebparts",
+                "operationId": "ListHSectionColumnWebparts",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3072,7 +3072,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Create new navigation property to webparts for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.columns.CreateWebparts",
+                "operationId": "CreateHSectionColumnWebpart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3160,7 +3160,7 @@
                 ],
                 "summary": "Get webparts from sites",
                 "description": "The collection of WebParts in this column.",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.columns.GetWebparts",
+                "operationId": "GetHSectionColumnWebpart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3283,7 +3283,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Delete navigation property webparts for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.columns.DeleteWebparts",
+                "operationId": "DeleteHSectionColumnWebpart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3373,7 +3373,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update the navigation property webparts in sites",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.columns.UpdateWebparts",
+                "operationId": "UpdateHSectionColumnWebpart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3465,7 +3465,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Invoke action getPositionOfWebPart",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.columns.webparts.GetPositionOfWebPart",
+                "operationId": "GetHSectionColumnWebpartPosition",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3557,7 +3557,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.columns.webparts.GetCount",
+                "operationId": "GetHSectionColumnWebpartsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3631,7 +3631,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.columns.GetCount",
+                "operationId": "GetHSectionColumnsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3693,7 +3693,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.AsSitePage.canvasLayout.horizontalSections.GetCount",
+                "operationId": "GetHSectionsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3744,7 +3744,7 @@
                 ],
                 "summary": "Get verticalSection from sites",
                 "description": "Vertical section on the SharePoint page.",
-                "operationId": "pages.AsSitePage.canvasLayout.GetVerticalSection",
+                "operationId": "GetVerticalSection",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3834,7 +3834,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Delete navigation property verticalSection for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.DeleteVerticalSection",
+                "operationId": "DeleteVerticalSection",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3888,7 +3888,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update the navigation property verticalSection in sites",
-                "operationId": "pages.AsSitePage.canvasLayout.UpdateVerticalSection",
+                "operationId": "UpdateVerticalSection",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -3945,7 +3945,7 @@
                 ],
                 "summary": "Get webparts from sites",
                 "description": "The set of web parts in this section.",
-                "operationId": "pages.AsSitePage.canvasLayout.verticalSection.ListWebparts",
+                "operationId": "ListVSectionWebparts",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4064,7 +4064,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Create new navigation property to webparts for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.verticalSection.CreateWebparts",
+                "operationId": "CreateVSectionWebpart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4128,7 +4128,7 @@
                 ],
                 "summary": "Get webparts from sites",
                 "description": "The set of web parts in this section.",
-                "operationId": "pages.AsSitePage.canvasLayout.verticalSection.GetWebparts",
+                "operationId": "GetVSectionWebpart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4227,7 +4227,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Delete navigation property webparts for sites",
-                "operationId": "pages.AsSitePage.canvasLayout.verticalSection.DeleteWebparts",
+                "operationId": "DeleteVSectionWebpart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4293,7 +4293,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update the navigation property webparts in sites",
-                "operationId": "pages.AsSitePage.canvasLayout.verticalSection.UpdateWebparts",
+                "operationId": "UpdateVSectionWebpart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4361,7 +4361,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Invoke action getPositionOfWebPart",
-                "operationId": "pages.AsSitePage.canvasLayout.verticalSection.webparts.GetPositionOfWebPart",
+                "operationId": "GetVSectionWebpartPosition",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4429,7 +4429,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.AsSitePage.canvasLayout.verticalSection.webparts.GetCount",
+                "operationId": "GetVSectionWebpartsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4480,7 +4480,7 @@
                 ],
                 "summary": "Get createdByUser from sites",
                 "description": "Identity of the user who created the item. Read-only.",
-                "operationId": "pages.AsSitePage.GetCreatedByUser",
+                "operationId": "GetSitePageCreator",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4767,7 +4767,7 @@
                 ],
                 "summary": "Get mailboxSettings property value",
                 "description": "Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Requires $select to retrieve.",
-                "operationId": "pages.AsSitePage.createdByUser.GetMailboxSettings",
+                "operationId": "GetSitePageCreatorMailbox",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4861,7 +4861,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update property mailboxSettings value.",
-                "operationId": "pages.AsSitePage.createdByUser.UpdateMailboxSettings",
+                "operationId": "UpdateSitePageCreatorMailbox",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -4916,7 +4916,7 @@
                 ],
                 "summary": "Get serviceProvisioningErrors property value",
                 "description": "Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.  Supports $filter (eq, not, for isResolved and serviceInstance).",
-                "operationId": "pages.AsSitePage.createdByUser.ListServiceProvisioningErrors",
+                "operationId": "ListSitePageCreatorServiceErrors",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5043,7 +5043,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.AsSitePage.createdByUser.ServiceProvisioningErrors.GetCount",
+                "operationId": "GetSitePageCreatorServiceErrorsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5094,7 +5094,7 @@
                 ],
                 "summary": "Get lastModifiedByUser from sites",
                 "description": "Identity of the user who last modified the item. Read-only.",
-                "operationId": "pages.AsSitePage.GetLastModifiedByUser",
+                "operationId": "GetSitePageModifier",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5381,7 +5381,7 @@
                 ],
                 "summary": "Get mailboxSettings property value",
                 "description": "Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Requires $select to retrieve.",
-                "operationId": "pages.AsSitePage.lastModifiedByUser.GetMailboxSettings",
+                "operationId": "GetSitePageModifierMailbox",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5475,7 +5475,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update property mailboxSettings value.",
-                "operationId": "pages.AsSitePage.lastModifiedByUser.UpdateMailboxSettings",
+                "operationId": "UpdateSitePageModifierMailbox",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5530,7 +5530,7 @@
                 ],
                 "summary": "Get serviceProvisioningErrors property value",
                 "description": "Errors published by a federated service describing a nontransient, service-specific error regarding the properties or link from a user object.  Supports $filter (eq, not, for isResolved and serviceInstance).",
-                "operationId": "pages.AsSitePage.lastModifiedByUser.ListServiceProvisioningErrors",
+                "operationId": "ListSitePageModifierServiceErrors",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5657,7 +5657,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.AsSitePage.lastModifiedByUser.ServiceProvisioningErrors.GetCount",
+                "operationId": "GetSitePageModifierServiceErrorsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5708,7 +5708,7 @@
                 ],
                 "summary": "Get webParts from sites",
                 "description": "Collection of webparts on the SharePoint page.",
-                "operationId": "pages.AsSitePage.ListWebParts",
+                "operationId": "ListSitePageWebParts",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5827,7 +5827,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Create new navigation property to webParts for sites",
-                "operationId": "pages.AsSitePage.CreateWebParts",
+                "operationId": "CreateSitePageWebPart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5891,7 +5891,7 @@
                 ],
                 "summary": "Get webParts from sites",
                 "description": "Collection of webparts on the SharePoint page.",
-                "operationId": "pages.AsSitePage.GetWebParts",
+                "operationId": "GetSitePageWebPart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -5995,7 +5995,7 @@
                     "description": "Find more info here",
                     "url": "https://learn.microsoft.com/graph/api/webpart-delete?view=graph-rest-1.0"
                 },
-                "operationId": "pages.AsSitePage.DeleteWebParts",
+                "operationId": "DeleteSitePageWebPart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -6061,7 +6061,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Update the navigation property webParts in sites",
-                "operationId": "pages.AsSitePage.UpdateWebParts",
+                "operationId": "UpdateSitePageWebPart",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -6130,7 +6130,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Invoke action getPositionOfWebPart",
-                "operationId": "pages.AsSitePage.webParts.GetPositionOfWebPart",
+                "operationId": "GetSitePageWebPartPosition",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -6199,7 +6199,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.AsSitePage.webParts.GetCount",
+                "operationId": "GetSitePageWebPartsCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -6250,7 +6250,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "pages.GetCount",
+                "operationId": "GetPagesCount",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -6294,7 +6294,7 @@
                     "description": "Find more info here",
                     "url": "https://learn.microsoft.com/graph/api/sitepage-get?view=graph-rest-1.0"
                 },
-                "operationId": "ListPages.AsSitePage",
+                "operationId": "ListSitePages",
                 "parameters": [
                     {
                         "name": "siteId",
@@ -6443,7 +6443,7 @@
                     "sites.baseSitePage"
                 ],
                 "summary": "Get the number of the resource",
-                "operationId": "Pages.GetCount.AsSitePage",
+                "operationId": "GetSitePagesCount",
                 "parameters": [
                     {
                         "name": "siteId",
