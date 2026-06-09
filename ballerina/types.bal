@@ -956,6 +956,9 @@ public type WebauthnPublicKeyCredential record {
 # Represents a column within a horizontal section of a SharePoint page, containing web parts.
 public type HorizontalSectionColumn record {
     *Entity;
+    # The OData type of the resource. Value: '#microsoft.graph.horizontalSectionColumn'.
+    @jsondata:Name {value: "@odata.type"}
+    string? atOdataType?;
     # Width of the column. A horizontal section is divided into 12 grids. A column should have a value of 1-12 to represent its range spans. For example, there can be two columns both have a width of 6 in a section
     decimal? width?;
     # The collection of WebParts in this column
@@ -1424,6 +1427,9 @@ public type ChatMessageInfo record {
 # Represents a vertical section on a SharePoint page, including emphasis and web parts.
 public type VerticalSection record {
     *Entity;
+    # The OData type of the resource. Value: '#microsoft.graph.verticalSection'.
+    @jsondata:Name {value: "@odata.type"}
+    string? atOdataType?;
     # Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue
     SectionEmphasisType|record {} emphasis?;
     # The set of web parts in this section
@@ -2618,6 +2624,9 @@ public type Conversation record {
 # Represents a horizontal section on a SharePoint page, including layout, columns, and background emphasis.
 public type HorizontalSection record {
     *Entity;
+    # The OData type of the resource. Value: '#microsoft.graph.horizontalSection'.
+    @jsondata:Name {value: "@odata.type"}
+    string? atOdataType?;
     # Layout type of the section. The possible values are: none, oneColumn, twoColumns, threeColumns, oneThirdLeftColumn, oneThirdRightColumn, fullWidth, unknownFutureValue
     HorizontalSectionLayoutType|record {} layout?;
     # The set of vertical columns in this section
@@ -2786,6 +2795,9 @@ public type TeamGuestSettings record {
 # Represents a web part entity on a SharePoint page, extending the base entity model.
 public type WebPart record {
     *Entity;
+    # The OData type of the resource. Use '#microsoft.graph.standardWebPart' or '#microsoft.graph.textWebPart'.
+    @jsondata:Name {value: "@odata.type"}
+    string? atOdataType?;
 };
 
 # Represents a public-facing error with code, message, target, details, and inner error information.
@@ -3836,6 +3848,9 @@ public type Thumbnail record {
 # Represents a base SharePoint site page with layout type, title, and publishing state.
 public type BaseSitePage record {
     *BaseItem;
+    # The OData type of the resource. Use '#microsoft.graph.sitePage' when creating a site page.
+    @jsondata:Name {value: "@odata.type"}
+    string? atOdataType?;
     # The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue
     PageLayoutType|record {} pageLayout?;
     # Title of the sitePage
@@ -5160,6 +5175,9 @@ public type StorageQuotaBreakdown record {
 # Represents a SharePoint site page, including layout, web parts, title area, and display settings.
 public type SitePage record {
     *BaseSitePage;
+    # The OData type of the resource. Value: '#microsoft.graph.sitePage'.
+    @jsondata:Name {value: "@odata.type"}
+    string? atOdataType?;
     # Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical sections
     CanvasLayout|record {} canvasLayout?;
     # Url of the sitePage's thumbnail image
@@ -6118,6 +6136,9 @@ public type MicrosoftgraphprinterCapabilitiesDuplexModes PrintDuplexMode|DuplexM
 
 # Represents the title area configuration of a SharePoint page, including layout, image, text alignment, and display options.
 public type TitleArea record {
+    # The OData type of the resource. Value: '#microsoft.graph.titleArea'.
+    @jsondata:Name {value: "@odata.type"}
+    string? atOdataType?;
     # Enumeration value that indicates the layout of the title area. The possible values are: imageAndTitle, plain, colorBlock, overlap, unknownFutureValue
     TitleAreaLayoutType|record {} layout?;
     # Contains collections of data that can be processed by server side services like search index and link fixup
@@ -6143,6 +6164,9 @@ public type TitleArea record {
 # Represents the layout of a SharePoint page canvas, including horizontal and vertical sections.
 public type CanvasLayout record {
     *Entity;
+    # The OData type of the resource. Value: '#microsoft.graph.canvasLayout'.
+    @jsondata:Name {value: "@odata.type"}
+    string? atOdataType?;
     # Collection of horizontal sections on the SharePoint page
     HorizontalSection[] horizontalSections?;
     # Vertical section on the SharePoint page
