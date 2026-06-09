@@ -1,5 +1,3 @@
-# Ballerina Microsoft Sharepoint Pages Connector
-
 ## Overview
 
 [Microsoft SharePoint](https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration) is a cloud-based collaboration and content management platform that enables organizations to create, manage, and share pages, sites, and documents seamlessly across teams and enterprises.

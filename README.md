@@ -1,4 +1,4 @@
-# Ballerina Microsoft.sharepoint.pages connector
+# Ballerina Microsoft Sharepoint Pages Connector
 
 [![Build](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/ci.yml)
 [![Trivy](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/trivy-scan.yml)
