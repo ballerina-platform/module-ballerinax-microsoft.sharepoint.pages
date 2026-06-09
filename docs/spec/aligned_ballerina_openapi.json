@@ -6744,6 +6744,12 @@
                 "title": "titleArea",
                 "type": "object",
                 "properties": {
+                    "@odata.type": {
+                        "type": "string",
+                        "description": "The OData type of the resource. Value: '#microsoft.graph.titleArea'.",
+                        "nullable": true,
+                        "x-ballerina-name": "atOdataType"
+                    },
                     "layout": {
                         "description": "Enumeration value that indicates the layout of the title area. The possible values are: imageAndTitle, plain, colorBlock, overlap, unknownFutureValue",
                         "anyOf": [
@@ -13102,6 +13108,14 @@
                     {
                         "title": "webPart",
                         "type": "object",
+                        "properties": {
+                            "@odata.type": {
+                                "type": "string",
+                                "description": "The OData type of the resource. Use '#microsoft.graph.standardWebPart' or '#microsoft.graph.textWebPart'.",
+                                "nullable": true,
+                                "x-ballerina-name": "atOdataType"
+                            }
+                        },
                         "description": "Core type definition for the webPart object schema."
                     }
                 ],
@@ -15820,6 +15834,12 @@
                         "title": "horizontalSectionColumn",
                         "type": "object",
                         "properties": {
+                            "@odata.type": {
+                                "type": "string",
+                                "description": "The OData type of the resource. Value: '#microsoft.graph.horizontalSectionColumn'.",
+                                "nullable": true,
+                                "x-ballerina-name": "atOdataType"
+                            },
                             "width": {
                                 "maximum": 2147483647,
                                 "minimum": -2147483648,
@@ -21197,6 +21217,12 @@
                         "title": "baseSitePage",
                         "type": "object",
                         "properties": {
+                            "@odata.type": {
+                                "type": "string",
+                                "description": "The OData type of the resource. Use '#microsoft.graph.sitePage' when creating a site page.",
+                                "nullable": true,
+                                "x-ballerina-name": "atOdataType"
+                            },
                             "pageLayout": {
                                 "description": "The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue",
                                 "anyOf": [
@@ -22392,6 +22418,12 @@
                         "title": "verticalSection",
                         "type": "object",
                         "properties": {
+                            "@odata.type": {
+                                "type": "string",
+                                "description": "The OData type of the resource. Value: '#microsoft.graph.verticalSection'.",
+                                "nullable": true,
+                                "x-ballerina-name": "atOdataType"
+                            },
                             "emphasis": {
                                 "description": "Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue",
                                 "anyOf": [
@@ -24070,6 +24102,12 @@
                         "title": "canvasLayout",
                         "type": "object",
                         "properties": {
+                            "@odata.type": {
+                                "type": "string",
+                                "description": "The OData type of the resource. Value: '#microsoft.graph.canvasLayout'.",
+                                "nullable": true,
+                                "x-ballerina-name": "atOdataType"
+                            },
                             "horizontalSections": {
                                 "type": "array",
                                 "description": "Collection of horizontal sections on the SharePoint page",
@@ -33021,6 +33059,12 @@
                         "title": "horizontalSection",
                         "type": "object",
                         "properties": {
+                            "@odata.type": {
+                                "type": "string",
+                                "description": "The OData type of the resource. Value: '#microsoft.graph.horizontalSection'.",
+                                "nullable": true,
+                                "x-ballerina-name": "atOdataType"
+                            },
                             "layout": {
                                 "description": "Layout type of the section. The possible values are: none, oneColumn, twoColumns, threeColumns, oneThirdLeftColumn, oneThirdRightColumn, fullWidth, unknownFutureValue",
                                 "anyOf": [
@@ -35879,6 +35923,12 @@
                         "title": "sitePage",
                         "type": "object",
                         "properties": {
+                            "@odata.type": {
+                                "type": "string",
+                                "description": "The OData type of the resource. Value: '#microsoft.graph.sitePage'.",
+                                "nullable": true,
+                                "x-ballerina-name": "atOdataType"
+                            },
                             "canvasLayout": {
                                 "description": "Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical sections",
                                 "anyOf": [
