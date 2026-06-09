@@ -52,6 +52,4 @@ public function main() returns error? {
     io:println("\nStep 3: Deleting the identified web part from the page...");
     check sharepointClient->sitesPagesAsSitePageDeleteWebParts(siteId, pageId, webPartId);
     io:println("Web part with ID '" + webPartId + "' has been successfully deleted from the page.");
-
-    io:println("\nWeb Part Audit and Cleanup Workflow completed successfully.");
 }

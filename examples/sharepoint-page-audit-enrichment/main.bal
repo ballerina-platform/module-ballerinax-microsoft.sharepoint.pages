@@ -23,7 +23,6 @@ configurable string tokenUrl = ?;
 configurable string siteId = ?;
 
 public function main() returns error? {
-
     pages:ConnectionConfig connectionConfig = {
         auth: {
             clientId,
@@ -83,16 +82,7 @@ public function main() returns error? {
         horizontalSections: [reviewSection]
     };
 
-    _ = bannerHtml;
     check sharepointClient->sitesPagesAsSitePageUpdateCanvasLayout(siteId, pageId, canvasLayoutPayload);
 
     io:println("Successfully added 'Last Reviewed' banner section to the page canvas layout.");
-    io:println("");
-
-    io:println("=== Audit and Enrichment Workflow Completed Successfully ===");
-    io:println("Summary:");
-    io:println("  - Listed all site pages for audit overview");
-    io:println("  - Retrieved full SitePage details including canvas layout");
-    io:println("  - Added standardized 'Last Reviewed' banner web part section");
-    io:println("  - Content governance policy enforced successfully");
 }

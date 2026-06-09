@@ -60,6 +60,4 @@ public function main() returns error? {
 
     check sharepointClient->sitesPagesAsSitePageCanvasLayoutVerticalSectionUpdateWebparts(siteId, pageId, existingWebPartId, updatedWebPart);
     io:println("Successfully updated existing web part with new navigation links.");
-
-    io:println("\n=== Vertical Section Web Part Audit and Refresh Workflow Completed ===");
 }
