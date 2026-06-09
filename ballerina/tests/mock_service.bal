@@ -21,8 +21,8 @@ final string mockCreatedDateTime = "2026-01-01T00:00:00Z";
 final string mockWebUrl = "https://contoso.sharepoint.com/SitePages/test-page.aspx";
 
 # Returns the canonical mock page used across GET endpoints.
-isolated function getMockPage() returns MicrosoftGraphBaseSitePage {
-    MicrosoftGraphBaseSitePage page = {
+isolated function getMockPage() returns BaseSitePage {
+    BaseSitePage page = {
         id: mockPageId,
         name: "test-page.aspx",
         title: "Test SharePoint Page",
@@ -38,18 +38,18 @@ service / on new http:Listener(9090) {
 
     # List baseSitePages — returns a single-item collection containing the mock page.
     resource function get [string siteId]/pages()
-            returns MicrosoftGraphBaseSitePageCollectionResponse {
-        MicrosoftGraphBaseSitePage[] pages = [getMockPage()];
+            returns BaseSitePageCollectionResponse {
+        BaseSitePage[] pages = [getMockPage()];
         return {value: pages};
     }
 
     # Create a page — rejects payloads with no title (400), otherwise echoes payload with a mock ID.
-    resource function post [string siteId]/pages(@http:Payload MicrosoftGraphBaseSitePage payload)
-            returns MicrosoftGraphBaseSitePage|http:BadRequest {
+    resource function post [string siteId]/pages(@http:Payload BaseSitePage payload)
+            returns BaseSitePage|http:BadRequest {
         if payload?.title == () {
             return http:BAD_REQUEST;
         }
-        MicrosoftGraphBaseSitePage newPage = {
+        BaseSitePage newPage = {
             id: mockPageId,
             name: payload?.name ?: "new-page.aspx",
             title: payload?.title,
@@ -63,7 +63,7 @@ service / on new http:Listener(9090) {
 
     # Get a single baseSitePage — returns mock data for the known ID, 404 otherwise.
     resource function get [string siteId]/pages/[string pageId]()
-            returns MicrosoftGraphBaseSitePage|http:NotFound {
+            returns BaseSitePage|http:NotFound {
         if pageId != mockPageId {
             return http:NOT_FOUND;
         }
@@ -71,7 +71,7 @@ service / on new http:Listener(9090) {
     }
 
     # Update a page — returns 204 for the known ID, 404 otherwise.
-    resource function patch [string siteId]/pages/[string pageId](@http:Payload MicrosoftGraphBaseSitePage payload)
+    resource function patch [string siteId]/pages/[string pageId](@http:Payload BaseSitePage payload)
             returns http:NoContent|http:NotFound {
         if pageId != mockPageId {
             return http:NOT_FOUND;

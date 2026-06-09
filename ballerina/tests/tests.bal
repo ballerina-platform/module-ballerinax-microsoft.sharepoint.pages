@@ -47,12 +47,12 @@ isolated function initClient() returns Client|error {
 // Test: Create a SharePoint page
 @test:Config {groups: ["live_test", "mock_test"]}
 isolated function testCreatePage() returns error? {
-    MicrosoftGraphBaseSitePage payload = {
+    BaseSitePage payload = {
         title: "Test SharePoint Page",
         name: "test-page.aspx",
         pageLayout: "article"
     };
-    MicrosoftGraphBaseSitePage response = check sharepoint->sitesCreatePages(siteId, payload);
+    BaseSitePage response = check sharepoint->createPages(siteId, payload);
     test:assertTrue(response?.id !is (), msg = "Created page should have an ID");
     test:assertEquals(response?.title, "Test SharePoint Page",
             msg = "Created page title should match the request payload");
@@ -64,8 +64,8 @@ isolated function testCreatePage() returns error? {
 // Test: List pages — collection should be non-empty after creating a page
 @test:Config {dependsOn: [testCreatePage], groups: ["live_test", "mock_test"]}
 isolated function testListPages() returns error? {
-    MicrosoftGraphBaseSitePageCollectionResponse response = check sharepoint->sitesListPages(siteId);
-    MicrosoftGraphBaseSitePage[] pages = response.value ?: [];
+    BaseSitePageCollectionResponse response = check sharepoint->listPages(siteId);
+    BaseSitePage[] pages = response.value ?: [];
     test:assertTrue(pages.length() > 0, msg = "Page list should contain at least one page");
 }
 
@@ -76,7 +76,7 @@ isolated function testGetPage() returns error? {
     lock {
         pageId = createdPageId;
     }
-    MicrosoftGraphBaseSitePage response = check sharepoint->sitesGetPages(siteId, pageId);
+    BaseSitePage response = check sharepoint->getPages(siteId, pageId);
     test:assertEquals(response?.id, pageId, msg = "Retrieved page ID should match the created page");
     test:assertEquals(response?.title, "Test SharePoint Page",
             msg = "Retrieved page title should match");
@@ -89,10 +89,10 @@ isolated function testUpdatePage() returns error? {
     lock {
         pageId = createdPageId;
     }
-    MicrosoftGraphBaseSitePage payload = {
+    BaseSitePage payload = {
         title: "Updated SharePoint Page"
     };
-    error? response = sharepoint->sitesUpdatePages(siteId, pageId, payload);
+    error? response = sharepoint->updatePages(siteId, pageId, payload);
     test:assertEquals(response, (), msg = "Page update should return no error (204 No Content)");
 }
 
@@ -103,7 +103,7 @@ isolated function testDeletePage() returns error? {
     lock {
         pageId = createdPageId;
     }
-    error? response = sharepoint->sitesDeletePages(siteId, pageId);
+    error? response = sharepoint->deletePages(siteId, pageId);
     test:assertEquals(response, (), msg = "Page deletion should return no error (204 No Content)");
 }
 
@@ -113,8 +113,8 @@ isolated function testGetNonExistentPage() {
     if isLiveServer {
         return;
     }
-    MicrosoftGraphBaseSitePage|error response =
-            sharepoint->sitesGetPages(siteId, "00000000-0000-0000-0000-000000000000");
+    BaseSitePage|error response =
+            sharepoint->getPages(siteId, "00000000-0000-0000-0000-000000000000");
     test:assertTrue(response is error,
             msg = "Getting a non-existent page should return an error (404)");
 }
@@ -126,7 +126,7 @@ isolated function testDeleteNonExistentPage() {
         return;
     }
     error? response =
-            sharepoint->sitesDeletePages(siteId, "00000000-0000-0000-0000-000000000000");
+            sharepoint->deletePages(siteId, "00000000-0000-0000-0000-000000000000");
     test:assertTrue(response is error,
             msg = "Deleting a non-existent page should return an error (404)");
 }
@@ -137,9 +137,9 @@ isolated function testPatchNonExistentPage() {
     if isLiveServer {
         return;
     }
-    MicrosoftGraphBaseSitePage payload = {title: "Should Fail"};
+    BaseSitePage payload = {title: "Should Fail"};
     error? response =
-            sharepoint->sitesUpdatePages(siteId, "00000000-0000-0000-0000-000000000000", payload);
+            sharepoint->updatePages(siteId, "00000000-0000-0000-0000-000000000000", payload);
     test:assertTrue(response is error,
             msg = "Patching a non-existent page should return an error (404)");
 }
@@ -150,11 +150,11 @@ isolated function testCreatePageWithoutTitle() {
     if isLiveServer {
         return;
     }
-    MicrosoftGraphBaseSitePage payload = {
+    BaseSitePage payload = {
         name: "no-title-page.aspx",
         pageLayout: "article"
     };
-    MicrosoftGraphBaseSitePage|error response = sharepoint->sitesCreatePages(siteId, payload);
+    BaseSitePage|error response = sharepoint->createPages(siteId, payload);
     test:assertTrue(response is error,
             msg = "Creating a page without a title should return an error (400)");
 }

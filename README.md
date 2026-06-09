@@ -90,7 +90,7 @@ Now, utilize the available connector operations.
 public function main() returns error? {
     string siteId = "add-the-site-id";
 
-    pages:MicrosoftGraphBaseSitePageCollectionResponse response = check sharepointPagesClient->sitesListPages(siteId);
+    pages:BaseSitePageCollectionResponse response = check sharepointPagesClient->listPages(siteId);
 }
 ```
 
