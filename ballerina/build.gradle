@@ -22,7 +22,7 @@ plugins {
     id 'io.ballerina.plugin'
 }
 
-description = 'Microsoft.sharepoint.pages - Ballerina'
+description = 'Microsoft SharePoint Pages Connector - Ballerina'
 
 def packageName = "microsoft.sharepoint.pages"
 def packageOrg = "ballerinax"

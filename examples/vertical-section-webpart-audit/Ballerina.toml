@@ -1,0 +1,8 @@
+[package]
+org = "generated_examples"
+name = "vertical_section_webpart_audit"
+version = "0.1.0"
+distribution = "2201.12.0"
+
+[build-options]
+observabilityIncluded = true
