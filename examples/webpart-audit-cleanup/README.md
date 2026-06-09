@@ -12,9 +12,9 @@ This example demonstrates how to perform a web part audit and cleanup on a Micro
    Create a `Config.toml` file in the project root and add your credentials:
 
    ```toml
-   tenantId = "<Your Tenant ID>"
    clientId = "<Your Client ID>"
    clientSecret = "<Your Client Secret>"
+   tokenUrl = "https://login.microsoftonline.com/<Your Tenant ID>/oauth2/v2.0/token"
    siteId = "<Your Site ID>"
    pageId = "<Your Page ID>"
    webPartId = "<Your Web Part ID>"

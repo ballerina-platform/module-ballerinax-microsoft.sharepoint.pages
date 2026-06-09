@@ -21,6 +21,7 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string tokenUrl = ?;
 configurable string siteId = ?;
+configurable string pageId = ?;
 
 public function main() returns error? {
     pages:ConnectionConfig connectionConfig = {
@@ -48,8 +49,6 @@ public function main() returns error? {
 
     // Step 2: Retrieve full SitePage details including canvas layout
     io:println("Step 2: Retrieving full SitePage details with canvas layout...");
-
-    string pageId = "example-page-id-001";
 
     pages:MicrosoftGraphSitePage getPageResult = check sharepointClient->sitesGetPagesAsSitePage(siteId, pageId);
 

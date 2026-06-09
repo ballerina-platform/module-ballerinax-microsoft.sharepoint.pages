@@ -12,10 +12,11 @@ This example demonstrates how to automate a corporate intranet page audit and en
    Create a `Config.toml` file in the project root and add your credentials:
 
    ```toml
-   tenantId = "<Your Tenant ID>"
    clientId = "<Your Client ID>"
    clientSecret = "<Your Client Secret>"
+   tokenUrl = "https://login.microsoftonline.com/<Your Tenant ID>/oauth2/v2.0/token"
    siteId = "<Your SharePoint Site ID>"
+   pageId = "<Your SharePoint Page ID>"
    ```
 
 ## Run the Example

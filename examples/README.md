@@ -12,11 +12,17 @@ The `microsoft.sharepoint.pages` connector provides practical examples illustrat
 
 1. Generate Microsoft SharePoint credentials to authenticate the connector as described in the [Setup guide](https://central.ballerina.io/ballerinax/microsoft.sharepoint.pages/latest#setup-guide).
 
-2. For each example, create a `Config.toml` file the related configuration. Here's an example of how your `Config.toml` file should look:
+2. For each example, create a `Config.toml` file with the related configuration. Here's an example of how your `Config.toml` file should look:
 
     ```toml
-    token = "<Access Token>"
+    clientId = "<Your Client ID>"
+    clientSecret = "<Your Client Secret>"
+    tokenUrl = "https://login.microsoftonline.com/<Your Tenant ID>/oauth2/v2.0/token"
+    siteId = "<Your SharePoint Site ID>"
+    pageId = "<Your SharePoint Page ID>"
     ```
+
+    Some examples may require additional keys (e.g., `existingWebPartId`, `webPartId`). Refer to each example's individual README for the exact set of required keys.
 
 ## Running an Example
 

@@ -34,7 +34,13 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
 7. Navigate to **API permissions**, click **Add a permission**, select **Microsoft Graph**, and add the required SharePoint permissions such as `Sites.Read.All`, `Sites.ReadWrite.All` depending on your use case. Click **Grant admin consent** to approve the permissions.
 
-8. Use the **Client ID**, **Tenant ID**, and **Client Secret** to obtain an OAuth 2.0 access token by making a POST request to `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` with the appropriate scope (e.g., `https://graph.microsoft.com/.default`).
+8. Construct the `tokenUrl` using the **Directory (tenant) ID** obtained in step 5:
+
+```text
+https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token
+```
+
+This is the OAuth 2.0 token endpoint the connector uses to exchange your `clientId` and `clientSecret` for an access token with the `https://graph.microsoft.com/.default` scope.
 
 ## Quickstart
 
@@ -82,7 +88,7 @@ Now, utilize the available connector operations.
 public function main() returns error? {
     string siteId = "add-the-site-id";
 
-    pages:MicrosoftGraphBaseSitePageCollectionResponse response = check sharePointClient->sitesListPages(siteId);
+    pages:MicrosoftGraphBaseSitePageCollectionResponse response = check sharepointPagesClient->sitesListPages(siteId);
 }
 ```
 

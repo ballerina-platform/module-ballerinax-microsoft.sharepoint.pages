@@ -110,6 +110,9 @@ isolated function testDeletePage() returns error? {
 // Test (negative): GET a page with an ID that does not exist — expects an error
 @test:Config {groups: ["mock_test"]}
 isolated function testGetNonExistentPage() {
+    if isLiveServer {
+        return;
+    }
     MicrosoftGraphBaseSitePage|error response =
             sharepoint->sitesGetPages(siteId, "00000000-0000-0000-0000-000000000000");
     test:assertTrue(response is error,
@@ -119,6 +122,9 @@ isolated function testGetNonExistentPage() {
 // Test (negative): DELETE a page with an ID that does not exist — expects an error
 @test:Config {groups: ["mock_test"]}
 isolated function testDeleteNonExistentPage() {
+    if isLiveServer {
+        return;
+    }
     error? response =
             sharepoint->sitesDeletePages(siteId, "00000000-0000-0000-0000-000000000000");
     test:assertTrue(response is error,
@@ -128,6 +134,9 @@ isolated function testDeleteNonExistentPage() {
 // Test (negative): PATCH a page with an ID that does not exist — expects an error
 @test:Config {groups: ["mock_test"]}
 isolated function testPatchNonExistentPage() {
+    if isLiveServer {
+        return;
+    }
     MicrosoftGraphBaseSitePage payload = {title: "Should Fail"};
     error? response =
             sharepoint->sitesUpdatePages(siteId, "00000000-0000-0000-0000-000000000000", payload);
@@ -138,6 +147,9 @@ isolated function testPatchNonExistentPage() {
 // Test (negative): Create a page without a title — expects an error (400 Bad Request)
 @test:Config {groups: ["mock_test"]}
 isolated function testCreatePageWithoutTitle() {
+    if isLiveServer {
+        return;
+    }
     MicrosoftGraphBaseSitePage payload = {
         name: "no-title-page.aspx",
         pageLayout: "article"

@@ -20,7 +20,7 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
 2. Ensure you have a Microsoft 365 Business Basic, Business Standard, Business Premium, or an Enterprise (E1, E3, or E5) plan, as SharePoint Online and its API capabilities are restricted to users on these plans. SharePoint Pages API features may require Microsoft 365 E3 or higher for full functionality.
 
-### Step 2: Register an Application and Generate an Access Token
+### Step 2: Register an Application and Generate Credentials
 
 1. Log in to the [Microsoft Azure Portal](https://portal.azure.com/) using your Microsoft 365 account credentials.
 
@@ -36,7 +36,13 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
 7. Navigate to **API permissions**, click **Add a permission**, select **Microsoft Graph**, and add the required SharePoint permissions such as `Sites.Read.All`, `Sites.ReadWrite.All` depending on your use case. Click **Grant admin consent** to approve the permissions.
 
-8. Use the **Client ID**, **Tenant ID**, and **Client Secret** to obtain an OAuth 2.0 access token by making a POST request to `https://login.microsoftonline.com/{tenant-id}/oauth2/v2.0/token` with the appropriate scope (e.g., `https://graph.microsoft.com/.default`).
+8. Construct the `tokenUrl` using the **Directory (tenant) ID** obtained in step 5:
+
+```text
+https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token
+```
+
+This is the OAuth 2.0 token endpoint the connector uses to exchange your `clientId` and `clientSecret` for an access token with the `https://graph.microsoft.com/.default` scope.
 
 ## Quickstart
 
@@ -55,7 +61,7 @@ import ballerinax/microsoft.sharepoint.pages;
 ```toml
 clientId = "<CLIENT_ID>"
 clientSecret = "<CLIENT_SECRET>"
-tokenUrl = "<TOKEN_URL>"
+tokenUrl = "https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token"
 ```
 
 2. Instantiate a `pages:Client` with the obtained credentials.
@@ -65,8 +71,6 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string tokenUrl = ?;
 
-
-```ballerina
 final pages:Client sharepointPagesClient = check new({
     auth: {
         clientId,
@@ -86,7 +90,7 @@ Now, utilize the available connector operations.
 public function main() returns error? {
     string siteId = "add-the-site-id";
 
-    pages:MicrosoftGraphBaseSitePageCollectionResponse response = check sharePointClient->sitesListPages(siteId);
+    pages:MicrosoftGraphBaseSitePageCollectionResponse response = check sharepointPagesClient->sitesListPages(siteId);
 }
 ```
 

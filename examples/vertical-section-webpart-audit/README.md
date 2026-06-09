@@ -10,9 +10,9 @@ This example demonstrates how to audit and manage web parts in a SharePoint page
 2. For this example, create a `Config.toml` file in the project root with your credentials:
 
 ```toml
-tenantId = "<Your Tenant ID>"
 clientId = "<Your Client ID>"
 clientSecret = "<Your Client Secret>"
+tokenUrl = "https://login.microsoftonline.com/<Your Tenant ID>/oauth2/v2.0/token"
 siteId = "<Your Site ID>"
 pageId = "<Your Page ID>"
 existingWebPartId = "<Your Existing Web Part ID>"
