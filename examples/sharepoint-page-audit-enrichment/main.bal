@@ -60,9 +60,6 @@ public function main() returns error? {
     // Step 3: Add a new horizontal section to the canvas layout
     io:println("Step 3: Adding 'Last Reviewed' banner section to canvas layout...");
 
-    string reviewedDate = "2024-01-15";
-    string bannerHtml = "<div style='background-color:#0078d4;color:white;padding:10px;'><strong>Last Reviewed:</strong> This page was last reviewed and approved by the IT Governance team on " + reviewedDate + ". Please contact the content owner for updates.</div>";
-
     pages:HorizontalSection reviewSection = {
         id: "last-reviewed-section",
         emphasis: "strong",
