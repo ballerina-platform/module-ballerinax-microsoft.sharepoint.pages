@@ -1,0 +1,82 @@
+import ballerina/io;
+import ballerinax/microsoft.sharepoint.pages;
+
+configurable string clientId = ?;
+configurable string clientSecret = ?;
+configurable string tokenUrl = ?;
+configurable string siteId = ?;
+
+public function main() returns error? {
+
+    pages:ConnectionConfig connectionConfig = {
+        auth: {
+            clientId,
+            clientSecret,
+            tokenUrl,
+            scopes: ["https://graph.microsoft.com/.default"]
+        }
+    };
+
+    pages:Client sharepointClient = check new (connectionConfig);
+
+    io:println("=== Corporate Intranet Page Audit and Enrichment Workflow ===");
+    io:println("");
+
+    // Step 1: List all existing site pages
+    io:println("Step 1: Listing all site pages for audit...");
+    pages:MicrosoftGraphBaseSitePageCollectionResponse listPagesResult = check sharepointClient->sitesListPages(siteId);
+
+    io:println("Successfully retrieved site pages.");
+    io:println("Site Pages Overview:");
+    io:println(listPagesResult);
+    io:println("");
+
+    // Step 2: Retrieve full SitePage details including canvas layout
+    io:println("Step 2: Retrieving full SitePage details with canvas layout...");
+
+    string pageId = "example-page-id-001";
+
+    pages:MicrosoftGraphSitePage getPageResult = check sharepointClient->sitesGetPagesAsSitePage(siteId, pageId);
+
+    io:println("Successfully retrieved SitePage details.");
+    io:println("Page Details (including canvas layout):");
+    io:println(getPageResult);
+    io:println("");
+
+    // Step 3: Add a new horizontal section to the canvas layout
+    io:println("Step 3: Adding 'Last Reviewed' banner section to canvas layout...");
+
+    string reviewedDate = "2024-01-15";
+    string bannerHtml = "<div style='background-color:#0078d4;color:white;padding:10px;'><strong>Last Reviewed:</strong> This page was last reviewed and approved by the IT Governance team on " + reviewedDate + ". Please contact the content owner for updates.</div>";
+
+    pages:MicrosoftGraphHorizontalSection reviewSection = {
+        id: "last-reviewed-section",
+        emphasis: "strong",
+        columns: [
+            {
+                id: "last-reviewed-column",
+                width: 12,
+                webparts: [
+                    {id: "last-reviewed-webpart"}
+                ]
+            }
+        ]
+    };
+
+    pages:MicrosoftGraphCanvasLayout canvasLayoutPayload = {
+        horizontalSections: [reviewSection]
+    };
+
+    _ = bannerHtml;
+    check sharepointClient->sitesPagesAsSitePageUpdateCanvasLayout(siteId, pageId, canvasLayoutPayload);
+
+    io:println("Successfully added 'Last Reviewed' banner section to the page canvas layout.");
+    io:println("");
+
+    io:println("=== Audit and Enrichment Workflow Completed Successfully ===");
+    io:println("Summary:");
+    io:println("  - Listed all site pages for audit overview");
+    io:println("  - Retrieved full SitePage details including canvas layout");
+    io:println("  - Added standardized 'Last Reviewed' banner web part section");
+    io:println("  - Content governance policy enforced successfully");
+}

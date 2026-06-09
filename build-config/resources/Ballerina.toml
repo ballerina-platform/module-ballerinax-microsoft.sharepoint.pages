@@ -5,12 +5,10 @@ name = "microsoft.sharepoint.pages"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = [] # TODO: Add keywords
+keywords = ["Productivity & Collaboration", "Microsoft", "Sharepoint", "Pages", "Sites"]
 # icon = "icon.png" # TODO: Add icon
 repository = "https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages"
 
 [build-options]
 observabilityIncluded = true
-
-[platform.java21]
 graalvmCompatible = true
