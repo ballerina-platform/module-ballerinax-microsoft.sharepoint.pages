@@ -1,12 +1,10 @@
-# microsoft.sharepoint.pages Connector
+# Ballerina Microsoft Sharepoint Pages Connector
 
 ## Overview
+
 [Microsoft SharePoint](https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration) is a cloud-based collaboration and content management platform that enables organizations to create, manage, and share pages, sites, and documents seamlessly across teams and enterprises.
 
 The `ballerinax/microsoft.sharepoint.pages` package offers APIs to connect and interact with [Microsoft SharePoint Pages API](https://learn.microsoft.com/en-us/graph/api/resources/sitepage?view=graph-rest-1.0) endpoints, specifically based on [Microsoft Graph REST API v1.0](https://learn.microsoft.com/en-us/graph/api/resources/sitepage?view=graph-rest-1.0).
-[Microsoft SharePoint](https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration) is a web-based collaboration and content management platform that enables organizations to create, manage, and share pages, documents, and sites across teams and enterprises.
-
-The `ballerinax/microsoft.sharepoint.pages` package offers APIs to connect and interact with the [Microsoft SharePoint Pages API](https://learn.microsoft.com/en-us/graph/api/resources/sitepage?view=graph-rest-1.0) endpoints, specifically based on [Microsoft Graph REST API v1.0](https://learn.microsoft.com/en-us/graph/api/resources/sitepage?view=graph-rest-1.0).
 
 ## Setup guide
 
