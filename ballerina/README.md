@@ -6,7 +6,7 @@ The `ballerinax/microsoft.sharepoint.pages` package offers APIs to connect and i
 
 ## Setup guide
 
-To use the Microsoft SharePoint Pages connector, you must have access to the Microsoft SharePoint API through a [Microsoft Azure developer account](https://portal.azure.com/) and obtain an OAuth 2.0 access token by registering an application in Azure Active Directory. If you do not have a Microsoft account, you can sign up for one [here](https://account.microsoft.com/account).
+To use the Microsoft SharePoint Pages connector, you must have access to the Microsoft SharePoint API through a [Microsoft Azure developer account](https://portal.azure.com/) and obtain client credentials by registering an application in Azure Active Directory. If you do not have a Microsoft account, you can sign up for one [here](https://account.microsoft.com/account).
 
 ### Step 1: Create a Microsoft Account and Set Up SharePoint Access
 
@@ -14,7 +14,7 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
 2. Ensure you have a Microsoft 365 Business Basic, Business Standard, Business Premium, or an Enterprise (E1, E3, or E5) plan, as SharePoint Online and its API capabilities are restricted to users on these plans. SharePoint Pages API features may require Microsoft 365 E3 or higher for full functionality.
 
-### Step 2: Register an Application and Generate an Access Token
+### Step 2: Register an Application and Generate Credentials
 
 1. Log in to the [Microsoft Azure Portal](https://portal.azure.com/) using your Microsoft 365 account credentials.
 
@@ -55,7 +55,7 @@ import ballerinax/microsoft.sharepoint.pages;
 ```toml
 clientId = "<CLIENT_ID>"
 clientSecret = "<CLIENT_SECRET>"
-tokenUrl = "<TOKEN_URL>"
+tokenUrl = "https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token"
 ```
 
 2. Instantiate a `pages:Client` with the obtained credentials.
@@ -78,7 +78,7 @@ final pages:Client sharepointPagesClient = check new({
 
 Now, utilize the available connector operations.
 
-#### Create a new page in a SharePoint site
+#### List pages in a SharePoint site
 
 ```ballerina
 public function main() returns error? {
@@ -95,8 +95,9 @@ bal run
 ```
 
 ## Examples
+
 The `microsoft.sharepoint.pages` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples), covering the following use cases:
 
-1. [Vertical section webpart audit](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/vertical-section-webpart-audit) - Illustrates how to audit web parts within vertical sections across SharePoint pages.
-2. [Webpart audit cleanup](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/webpart-audit-cleanup) - Demonstrates how to identify and clean up web parts on SharePoint pages based on audit results.
-3. [Sharepoint page audit enrichment](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/sharepoint-page-audit-enrichment) - Illustrates how to enrich SharePoint page audit data with additional metadata and contextual information.
+1. [Vertical section webpart audit](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/vertical-section-webpart-audit) - Inspect and report on web parts placed within vertical sections across SharePoint pages.
+2. [Webpart audit cleanup](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/webpart-audit-cleanup) - Identify and remove outdated or unused web parts from SharePoint pages as part of a cleanup process.
+3. [SharePoint page audit enrichment](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/sharepoint-page-audit-enrichment) - Enrich SharePoint page audit data with additional metadata to produce comprehensive audit reports.
