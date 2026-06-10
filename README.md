@@ -4,7 +4,7 @@
 [![Trivy](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/trivy-scan.yml)
 [![GraalVM Check](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/build-with-bal-test-graalvm.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/build-with-bal-test-graalvm.yml)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/commits/master)
-[![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/microsoft.sharepoint.pages.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%microsoft.sharepoint.pages)
+[![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/microsoft.sharepoint.pages.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%2Fmicrosoft.sharepoint.pages)
 
 [Microsoft SharePoint](https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration) is a cloud-based collaboration and content management platform that enables organizations to create, manage, and share pages, sites, and documents seamlessly across teams and enterprises.
 
@@ -12,7 +12,7 @@ The `ballerinax/microsoft.sharepoint.pages` package offers APIs to connect and i
 
 ## Setup guide
 
-To use the Microsoft SharePoint Pages connector, you must have access to the Microsoft SharePoint API through a [Microsoft Azure developer account](https://portal.azure.com/) and obtain an OAuth 2.0 access token by registering an application in Azure Active Directory. If you do not have a Microsoft account, you can sign up for one [here](https://account.microsoft.com/account).
+To use the Microsoft SharePoint Pages connector, you must have access to the Microsoft SharePoint API through a [Microsoft Azure developer account](https://portal.azure.com/) and obtain client credentials by registering an application in Azure Active Directory. If you do not have a Microsoft account, you can sign up for one [here](https://account.microsoft.com/account).
 
 ### Step 1: Create a Microsoft Account and Set Up SharePoint Access
 
@@ -84,7 +84,7 @@ final pages:Client sharepointPagesClient = check new({
 
 Now, utilize the available connector operations.
 
-#### Create a new page in a SharePoint site
+#### List pages in a SharePoint site
 
 ```ballerina
 public function main() returns error? {
@@ -104,9 +104,9 @@ bal run
 
 The `microsoft.sharepoint.pages` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples), covering the following use cases:
 
-1. [Vertical section webpart audit](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/vertical-section-webpart-audit) - Illustrates how to audit web parts located within vertical sections across SharePoint pages.
-2. [Webpart audit cleanup](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/webpart-audit-cleanup) - Demonstrates how to identify and clean up web parts on SharePoint pages as part of an audit process.
-3. [Sharepoint page audit enrichment](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/sharepoint-page-audit-enrichment) - Illustrates how to enrich SharePoint page audit data with additional metadata for comprehensive reporting.
+1. [Vertical section webpart audit](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/vertical-section-webpart-audit) - Inspect and report on web parts placed within vertical sections across SharePoint pages.
+2. [Webpart audit cleanup](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/webpart-audit-cleanup) - Identify and remove outdated or unused web parts from SharePoint pages as part of a cleanup process.
+3. [SharePoint page audit enrichment](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/tree/main/examples/sharepoint-page-audit-enrichment) - Enrich SharePoint page audit data with additional metadata to produce comprehensive audit reports.
 
 ## Useful Links
 
