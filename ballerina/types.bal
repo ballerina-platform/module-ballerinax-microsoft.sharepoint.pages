@@ -213,6 +213,22 @@ public type TargetedChatMessage record {
     Identity|record {} recipient?;
 };
 
+# Represents the Queries record for the operation: getSitePageWebPartsByPosition
+public type GetSitePageWebPartsByPositionQueries record {
+    # Identifier of the horizontalSection where the WebPart is located.
+    @http:Query {name: "horizontalSectionId"}
+    decimal horizontalSectionId?;
+    # Identifier of the column where the WebPart is located. Only works if horizontalSectionId is provided.
+    @http:Query {name: "columnId"}
+    decimal columnId?;
+    # Index (order) of the WebPart in its column or section. Only works if columnId or isInVerticalSection is provided.
+    @http:Query {name: "webPartIndex"}
+    decimal webPartIndex?;
+    # Indicates if the WebPart is in the vertical section.
+    @http:Query {name: "isInVerticalSection"}
+    boolean isInVerticalSection?;
+};
+
 # Represents the Queries record for the operation: listPageCreatorServiceErrors
 public type ListPageCreatorServiceErrorsQueries record {
     # Skip the first n items

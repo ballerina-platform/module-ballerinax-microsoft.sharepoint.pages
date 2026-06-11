@@ -966,6 +966,31 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, headers);
     }
 
+    # Publish a site page
+    #
+    # + siteId - The unique identifier of site
+    # + baseSitePageId - The unique identifier of baseSitePage
+    # + headers - Headers to be sent with the request 
+    # + return - No content. The page was successfully published. 
+    remote isolated function publishSitePage(string siteId, string baseSitePageId, map<string|string[]> headers = {}) returns error? {
+        string resourcePath = string `/${getEncodedUri(siteId)}/pages/${getEncodedUri(baseSitePageId)}/microsoft.graph.sitePage/publish`;
+        http:Request request = new;
+        return self.clientEp->post(resourcePath, request, headers);
+    }
+
+    # Get web parts by position
+    #
+    # + siteId - The unique identifier of site
+    # + baseSitePageId - The unique identifier of baseSitePage
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - Retrieved collection 
+    remote isolated function getSitePageWebPartsByPosition(string siteId, string baseSitePageId, map<string|string[]> headers = {}, *GetSitePageWebPartsByPositionQueries queries) returns WebPartCollectionResponse|error {
+        string resourcePath = string `/${getEncodedUri(siteId)}/pages/${getEncodedUri(baseSitePageId)}/microsoft.graph.sitePage/getWebPartsByPosition`;
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        return self.clientEp->get(resourcePath, headers);
+    }
+
     # Get the number of the resource
     #
     # + siteId - The unique identifier of site

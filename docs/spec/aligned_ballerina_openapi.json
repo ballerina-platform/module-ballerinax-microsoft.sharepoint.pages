@@ -6243,6 +6243,161 @@
                 "description": "Returns the total count of web parts associated with the specified site page."
             }
         },
+        "/{siteId}/pages/{baseSitePageId}/microsoft.graph.sitePage/publish": {
+            "description": "Provides operations to call the publish method.",
+            "post": {
+                "tags": [
+                    "sites.baseSitePage"
+                ],
+                "summary": "Publish a site page",
+                "description": "Publish the latest version of a sitePage resource, making it available to all users. If the page is checked out, check in the page and publish it. If the page is checked out to the calling user, the page is automatically checked in and published. If a page approval flow has been activated in the page library, the page isn't published until the approval flow is completed.",
+                "externalDocs": {
+                    "description": "Find more info here",
+                    "url": "https://learn.microsoft.com/graph/api/sitepage-publish?view=graph-rest-1.0"
+                },
+                "operationId": "PublishSitePage",
+                "parameters": [
+                    {
+                        "name": "siteId",
+                        "in": "path",
+                        "description": "The unique identifier of site",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "x-ms-docs-key-type": "site"
+                    },
+                    {
+                        "name": "baseSitePageId",
+                        "in": "path",
+                        "description": "The unique identifier of baseSitePage",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "x-ms-docs-key-type": "baseSitePage"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content. The page was successfully published."
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/error"
+                    }
+                },
+                "x-ms-docs-operation-type": "action"
+            }
+        },
+        "/{siteId}/pages/{baseSitePageId}/microsoft.graph.sitePage/getWebPartsByPosition": {
+            "description": "Provides operations to call the getWebPartsByPosition method.",
+            "get": {
+                "tags": [
+                    "sites.baseSitePage"
+                ],
+                "summary": "Get web parts by position",
+                "description": "Get a collection of webPart objects by providing coordinates of a webPart or a verticalSection on a sitePage.",
+                "externalDocs": {
+                    "description": "Find more info here",
+                    "url": "https://learn.microsoft.com/graph/api/sitepage-getwebpartsbyposition?view=graph-rest-1.0"
+                },
+                "operationId": "GetSitePageWebPartsByPosition",
+                "parameters": [
+                    {
+                        "name": "siteId",
+                        "in": "path",
+                        "description": "The unique identifier of site",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "x-ms-docs-key-type": "site"
+                    },
+                    {
+                        "name": "baseSitePageId",
+                        "in": "path",
+                        "description": "The unique identifier of baseSitePage",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "x-ms-docs-key-type": "baseSitePage"
+                    },
+                    {
+                        "name": "columnId",
+                        "in": "query",
+                        "description": "Identifier of the column where the WebPart is located. Only works if horizontalSectionId is provided.",
+                        "required": false,
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "double"
+                        },
+                        "x-ballerina-name": "columnId"
+                    },
+                    {
+                        "name": "horizontalSectionId",
+                        "in": "query",
+                        "description": "Identifier of the horizontalSection where the WebPart is located.",
+                        "required": false,
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "double"
+                        },
+                        "x-ballerina-name": "horizontalSectionId"
+                    },
+                    {
+                        "name": "isInVerticalSection",
+                        "in": "query",
+                        "description": "Indicates if the WebPart is in the vertical section.",
+                        "required": false,
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "x-ballerina-name": "isInVerticalSection"
+                    },
+                    {
+                        "name": "webPartIndex",
+                        "in": "query",
+                        "description": "Index (order) of the WebPart in its column or section. Only works if columnId or isInVerticalSection is provided.",
+                        "required": false,
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "number",
+                            "format": "double"
+                        },
+                        "x-ballerina-name": "webPartIndex"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/microsoft.graph.webPartCollectionResponse"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/error"
+                    }
+                },
+                "x-ms-pageable": {
+                    "nextLinkName": "@odata.nextLink",
+                    "operationName": "listMore"
+                },
+                "x-ms-docs-operation-type": "function"
+            }
+        },
         "/{siteId}/pages/$count": {
             "description": "Provides operations to count the resources in the collection.",
             "get": {
