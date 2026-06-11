@@ -24,19 +24,41 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
 1. Log in to the [Microsoft Azure Portal](https://portal.azure.com/) using your Microsoft 365 account credentials.
 
-2. In the left-hand navigation menu, select **Azure Active Directory** (or search for "Microsoft Entra ID" in the top search bar).
+2. In the left-hand navigation menu, select **Microsoft Entra ID** in the top search bar.
 
 3. In the left panel, navigate to **App registrations** and click **New registration**.
 
-4. Enter a name for your application, select the appropriate **Supported account types** (e.g., "Accounts in this organizational directory only"), and click **Register**.
+   ![New application registration](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/new-application-registration.png)
+
+4. Enter a name for your application, select the appropriate **Supported account types** (e.g., "Single tenant only"), and click **Register**.
+
+   ![Application registration details](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/application-registration-details.png)
 
 5. Once the application is registered, note down the **Application (client) ID** and **Directory (tenant) ID** from the Overview page.
 
+   ![Client ID and Tenant ID](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/client-id-and-tenant-id.png)
+
 6. Navigate to **Certificates & secrets** in the left panel, click **New client secret**, provide a description and expiry period, then click **Add**. Copy the generated **client secret value** immediately.
 
-7. Navigate to **API permissions**, click **Add a permission**, select **Microsoft Graph**, and add the required SharePoint permissions such as `Sites.Read.All`, `Sites.ReadWrite.All` depending on your use case. Click **Grant admin consent** to approve the permissions.
+   ![Create client secret](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/create-client-secret.png)
 
-8. Construct the `tokenUrl` using the **Directory (tenant) ID** obtained in step 5:
+7. Navigate to **API permissions** in the left panel and click **Add a permission**.
+
+   ![Add API permission](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/add-api-permission.png)
+
+8. Select **Microsoft Graph** from the available API options.
+
+   ![Microsoft Graph API permission](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/microsoft-graph-api-permission.png)
+
+9. Select the required SharePoint permissions (`Sites.Read.All` and `Sites.ReadWrite.All`) depending on your use case, then click **Add permissions**.
+
+   ![API site permissions](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/api-site-permissions.png)
+
+10. Click **Grant admin consent** to approve the permissions for your organization.
+
+   ![Grant admin consent](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/grant-admin-consent.png)
+
+11. Construct the `tokenUrl` using the **Directory (tenant) ID** obtained in step 5:
 
 ```text
 https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token
