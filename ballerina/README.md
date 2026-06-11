@@ -50,7 +50,7 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
 10. Click **Grant admin consent** to approve the permissions for your organization.
 
-   ![Grant admin consent](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/grant-admin-consent.png)
+    ![Grant admin consent](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/grant-admin-consent.png)
 
 11. Construct the `tokenUrl` using the **Directory (tenant) ID** obtained in step 5:
 
