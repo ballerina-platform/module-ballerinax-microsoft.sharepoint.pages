@@ -1,8 +1,6 @@
 # Ballerina Microsoft Sharepoint Pages Connector
 
 [![Build](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/ci.yml)
-[![Trivy](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/trivy-scan.yml)
-[![GraalVM Check](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/build-with-bal-test-graalvm.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/actions/workflows/build-with-bal-test-graalvm.yml)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages.svg)](https://github.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/commits/master)
 [![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/microsoft.sharepoint.pages.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%2Fmicrosoft.sharepoint.pages)
 
@@ -56,7 +54,7 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
 10. Click **Grant admin consent** to approve the permissions for your organization.
 
-   ![Grant admin consent](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/grant-admin-consent.png)
+    ![Grant admin consent](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/grant-admin-consent.png)
 
 11. Construct the `tokenUrl` using the **Directory (tenant) ID** obtained in step 5:
 
