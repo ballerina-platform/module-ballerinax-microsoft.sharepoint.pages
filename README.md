@@ -24,13 +24,13 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
 1. Log in to the [Microsoft Azure Portal](https://portal.azure.com/) using your Microsoft 365 account credentials.
 
-2. In the left-hand navigation menu, select **Azure Active Directory** (or search for "Microsoft Entra ID" in the top search bar).
+2. In the left-hand navigation menu, select **Microsoft Entra ID** in the top search bar.
 
 3. In the left panel, navigate to **App registrations** and click **New registration**.
 
    ![New application registration](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/new-application-registration.png)
 
-4. Enter a name for your application, select the appropriate **Supported account types** (e.g., "Accounts in this organizational directory only"), and click **Register**.
+4. Enter a name for your application, select the appropriate **Supported account types** (e.g., "Single tenant only"), and click **Register**.
 
    ![Application registration details](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/application-registration-details.png)
 
@@ -50,7 +50,7 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
    ![Microsoft Graph API permission](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/microsoft-graph-api-permission.png)
 
-9. Select the required SharePoint permissions such as `Sites.Read.All` and `Sites.ReadWrite.All` depending on your use case, then click **Add permissions**.
+9. Select the required SharePoint permissions (`Sites.Read.All` and `Sites.ReadWrite.All`) depending on your use case, then click **Add permissions**.
 
    ![API site permissions](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/api-site-permissions.png)
 
