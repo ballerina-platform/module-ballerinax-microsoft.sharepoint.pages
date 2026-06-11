@@ -44,7 +44,16 @@ To use the Microsoft SharePoint Pages connector, you must have access to the Mic
 
    ![Microsoft Graph API permission](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/microsoft-graph-api-permission.png)
 
-9. Select the required SharePoint permissions (`Sites.Read.All` and `Sites.ReadWrite.All`) depending on your use case, then click **Add permissions**.
+9. Select **Application permissions**, then search for and add the following permissions depending on your use case, then click **Add permissions**.
+
+   | Permission | Operations covered |
+   |---|---|
+   | `Sites.Read.All` | Read sites, lists, columns, content types, drives, analytics |
+   | `Sites.ReadWrite.All` | Create and update lists, list items, drives, and content |
+   | `Sites.Manage.All` | Update site properties, create/delete columns and content types |
+   | `Sites.FullControl.All` | Manage site permissions |
+
+   > **Tip:** Grant only the permissions your application actually requires. For read-only use cases, `Sites.Read.All` is sufficient. For full connector coverage, add all four.
 
    ![API site permissions](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-microsoft.sharepoint.pages/refs/heads/main/docs/resources/api-site-permissions.png)
 
